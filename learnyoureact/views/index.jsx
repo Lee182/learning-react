@@ -2,19 +2,37 @@ import React from 'react';
 
 class TodoBox extends React.Component {
   render() {
-    return (
-      <div className="todoBox">
-          <h1>Todos</h1>
-          <TodoList />
-          <TodoForm />
-      </div>
-    );
+    return (<div className="todoBox">
+      <h1>Todos</h1>
+      <TodoList/>
+      <TodoForm/>
+    </div>)
   }
 }
 
 class TodoList extends React.Component {
   render() {
-    return (<div className="todoList">I am a TodoList.</div>)
+    return (
+      <div className="todoList">
+        <table style={{border: "2px solid black"}}>
+          <tbody>
+            <Todo title="Shopping">Milk</Todo>
+            <Todo title="Hair cut">13:00</Todo>
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+}
+
+class Todo extends React.Component {
+  render() {
+    // console.log(this.props)
+    var a = {"border": "1px solid black"}
+    return (<tr>
+      <td style={a}>{this.props.title}</td>
+      <td style={a}>{this.props.children}</td>
+    </tr>)
   }
 }
 
