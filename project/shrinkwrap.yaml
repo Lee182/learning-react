@@ -1,0 +1,44 @@
+dependencies:
+  cson@^4.1.0: 4.1.0
+packages:
+  /coffee-script/1.12.5: 809f4585419112bbfe46a073ad7543af18c27346
+  /cson-parser/1.3.5:
+    dependencies:
+      coffee-script: 1.12.5
+    resolution: 7ec675e039145533bf2a6a856073f1599d9c2d24
+  /cson/4.1.0:
+    dependencies:
+      coffee-script: 1.12.5
+      cson-parser: 1.3.5
+      extract-opts: 3.3.1
+      requirefresh: 2.1.0
+      safefs: 4.1.0
+    resolution: b1075344fa9d9fe5cf88d80f21d9366296b865c7
+  /eachr/3.2.0:
+    dependencies:
+      editions: 1.3.3
+      typechecker: 4.4.1
+    resolution: 2c35e43ea086516f7997cf80b7aa64d55a4a4484
+  /editions/1.3.3: 0907101bdda20fac3cbe334c27cbd0688dc99a5b
+  /extract-opts/3.3.1:
+    dependencies:
+      eachr: 3.2.0
+      editions: 1.3.3
+      typechecker: 4.4.1
+    resolution: 5abbedc98c0d5202e3278727f9192d7e086c6be1
+  /graceful-fs/4.1.11: 0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658
+  /requirefresh/2.1.0:
+    dependencies:
+      editions: 1.3.3
+    resolution: 742dccc20f3a96918d66c6f1597dc8ffebc4f6f5
+  /safefs/4.1.0:
+    dependencies:
+      editions: 1.3.3
+      graceful-fs: 4.1.11
+    resolution: f82aeb4bdd7ae51f653eb20f6728b3058c8d6445
+  /typechecker/4.4.1:
+    dependencies:
+      editions: 1.3.3
+    resolution: f97b95f51b038417212d677d45a373ee7bced7e6
+registry: 'https://registry.npmjs.org/'
+version: 2

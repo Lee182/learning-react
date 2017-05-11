@@ -4,7 +4,8 @@
   "description": "simple web form parsing, tobe connected to mongodb backend",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-form": "node shared/parseForm.js"
   },
   "repository": {
     "type": "git",

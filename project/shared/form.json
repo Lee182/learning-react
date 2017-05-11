@@ -1,0 +1,113 @@
+[
+  {
+    "heading": "Personal Details",
+    "inputs": [
+      {
+        "id": "name",
+        "label": "Name",
+        "placeholder": "John Doe"
+      },
+      {
+        "id": "summary",
+        "label": "Summary"
+      }
+    ]
+  },
+  {
+    "heading": "Contact Info",
+    "inputs": [
+      {
+        "id": "phones",
+        "label": "Phone",
+        "placeholder": "Phone Number",
+        "array": {
+          "op": "addToSet",
+          "label": "Add Phone",
+          "verify": "phone"
+        }
+      },
+      {
+        "id": "email",
+        "label": "E-mail address",
+        "array": {
+          "op": "addToSet",
+          "label": "Add Email",
+          "verify": "email"
+        }
+      },
+      {
+        "heading": "Address",
+        "inputs": {
+          "0": {
+            "id": "address.housenumber",
+            "label": "House Number",
+            "verify": "house_number"
+          },
+          "1": {
+            "id": "address.city",
+            "label": "City"
+          },
+          "2": {
+            "id": "address.country",
+            "label": "Country"
+          },
+          "3": {
+            "id": "address.post_code",
+            "label": "Post Code"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "heading": "Job History",
+    "array": {
+      "label": "Add Experience",
+      "heading": "Experience $",
+      "op": "push",
+      "verify": [
+        "date.end>date.start"
+      ]
+    },
+    "inputs": [
+      {
+        "id": "job.$.title",
+        "label": "Job Title"
+      },
+      {
+        "id": "job.$.employer",
+        "label": "Employer",
+        "placeholder": "Employer/Organisation"
+      },
+      {
+        "id": "job.$.summary",
+        "label": "Summary"
+      },
+      {
+        "id": "job.$.date_start",
+        "label": "Date Start",
+        "verify": "moment_date"
+      },
+      {
+        "id": "job.$.date_end",
+        "label": "Date Finish",
+        "verify": "moment_date"
+      }
+    ]
+  },
+  {
+    "heading": "Allergies",
+    "optional": true,
+    "inputs": [
+      {
+        "id": "allergy.$",
+        "label": false,
+        "array": {
+          "label": "Add Allergy",
+          "op": "addToSet"
+        },
+        "placeholder": "Allergy eg. Nuts, Lactose, Gluten"
+      }
+    ]
+  }
+]
