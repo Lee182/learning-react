@@ -30,3 +30,18 @@ within an class `this.props` is populated with attributes
 `this.props.children` is populated with nested content.
 
 had some problems with passing inline styles.
+
+## Prop types
+prop types will give a warning when an alternative type is given.
+```js
+class MyComponent extends React.Component {
+  /* ... */
+}
+MyComponent.propTypes = {
+    name:   React.PropTypes.string.isRequired,
+    id:     React.PropTypes.number.isRequired,
+    width:  React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired,
+    alt:    React.PropTypes.string
+};
+```
