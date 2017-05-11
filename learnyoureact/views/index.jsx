@@ -27,10 +27,20 @@ class TodoList extends React.Component {
 }
 
 class Todo extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {checked: false}
+  }
+  handleChange(e) {
+    this.setState({checked: !this.state.checked})
+  }
   render() {
     // console.log(this.props)
     var a = {"border": "1px solid black"}
     return (<tr>
+      <td style={{border: "1px solid black"}}>
+        <input type="checkbox" checked={this.state.checked} onChange={this.handleChange.bind(this)}/>
+      </td>
       <td style={a}>{this.props.title}</td>
       <td style={a}>{this.props.children}</td>
     </tr>)

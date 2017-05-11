@@ -45,3 +45,27 @@ MyComponent.propTypes = {
     alt:    React.PropTypes.string
 };
 ```
+
+## setState
+```js
+constructor(props) {
+  super(props)
+  this.state = {checked: false}
+}
+handleChange(e) {
+  this.setState({checked: !this.state.checked})
+}
+render() {
+  // console.log(this.props)
+  var a = {"border": "1px solid black"}
+  return (<tr>
+    <td style={{border: "1px solid black"}}>
+      <input type="checkbox" checked={this.state.checked} onChange={this.handleChange.bind(this)}/>
+    </td>
+    <td style={a}>{this.props.title}</td>
+    <td style={a}>{this.props.children}</td>
+  </tr>)
+}
+```
+used this syntax within a component to update `this.state.checked`.
+Confuzed about server-side rendered app, not clear in intro.
