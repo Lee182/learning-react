@@ -112,3 +112,6 @@ now the application size is
 
 ## Completed css2
 basically conditional style binding, where the style is updated with the state change.
+
+## Events
+in this i eventually learnt that to modify parent state, you must pass a function to the child component, and always use `.bind(this)` to your function, otherwise you'll get errors like `this.state is undefined`.

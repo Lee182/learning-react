@@ -3,12 +3,22 @@ import React from 'react';
 class TodoBox extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      data: this.props.data
+    }
+  }
+  addTodo(todo){
+    let a = [].concat(this.state.data)
+    a.push(todo)
+    this.setState({
+      data: a
+    })
   }
   render() {
     return (<div className="todoBox">
       <h1>Todos</h1>
-      <TodoList data={this.props.data}/>
-      <TodoForm/>
+      <TodoList data={this.state.data}/>
+      <TodoForm data={this.state.data} addTodo={this.addTodo.bind(this)}/>
     </div>)
   }
 }
@@ -41,6 +51,7 @@ class Todo extends React.Component {
       style: style.todo__not_checked
     }
   }
+
   handleChange(e) {
     var styleName = 'todo__' + (!this.state.checked ? 'checked': 'not_checked')
     this.setState({
@@ -67,8 +78,34 @@ Todo.propTypes = {
 }
 
 class TodoForm extends React.Component {
+  constructor(props){
+    super(props)
+    // changing the data state
+    this.state = {
+      title: '',
+      detail: '',
+    }
+  }
+  changeTitle(e) {
+    this.setState({title: e.target.value})
+  }
+  changeDetail(e){
+    this.setState({detail: e.target.value})
+  }
+  handleAdd(e) {
+    this.props.addTodo(this.state)
+  }
   render() {
-    return (<div className="todoForm">I am a TodoForm.</div>)
+    return (<div>
+      Title: <input type="text"
+        value={this.state.title}
+        onChange={this.changeTitle.bind(this)} />
+      <br/>
+      Detail: <input type="text"
+        value={this.state.detail}
+        onChange={this.changeDetail.bind(this)} />
+      <button onClick={this.handleAdd.bind(this)}>Add</button>
+    </div>)
   }
 }
 
