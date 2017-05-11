@@ -53,10 +53,11 @@ class Todo extends React.Component {
   }
 }
 
-Todo.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  children: React.PropTypes.string.isRequired
-}
+// throws server error
+// Todo.propTypes = {
+//   title: React.PropTypes.string.isRequired,
+//   children: React.PropTypes.string.isRequired
+// }
 
 class TodoForm extends React.Component {
   render() {

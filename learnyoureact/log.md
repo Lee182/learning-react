@@ -87,3 +87,25 @@ var todos = data.map(()=>{
 </tbody>
 ```
 Note also in this expamle `constructor(props)` and `super(props)` has been used to apply props to this. And that data has to flow from the parent `TodoBox` to `TodoList` to then make the `Todo` elments.
+
+## React on the frontend
+```bash
+npm install --save browserify babelify babel-preset-react babel-preset-es2015
+```
+ran into the following error
+```bash
+Warning: Accessing PropTypes via the main React package is deprecated. Use the prop-types package from npm instead.
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: Cannot find module 'loose-envify' from '/Users/lee/jono/webdev-projects/learning-react/learnyoureact/node_modules/react-dom'
+```
+so therefor i omitted the propsTypes code from views/index.jsx
+and ran `npm install --save loose-envify`
+
+after resolving them errors, i can now use the [React Developer Tools Firefox extention](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) and debug the react state.
+
+now the application size is
+  index.html   1.11KB
+  bundle.js  723.84KB
