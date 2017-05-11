@@ -69,3 +69,9 @@ render() {
 ```
 used this syntax within a component to update `this.state.checked`.
 Confuzed about server-side rendered app, not clear in intro.
+
+# CSS
+uses inline style binding of.
+```js
+<h1 style={styleObj.heading}>Hello World</h1>
+```
