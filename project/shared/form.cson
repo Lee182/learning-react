@@ -9,18 +9,24 @@
       1:
         id: 'summary'
         label: 'Summary'
-  2:
+  1:
     heading: 'Contact Info'
-    inputs
+    inputs:
       0:
-        id: 'phone_primary'
+        id: 'phones'
         label: 'Phone'
         placeholder: 'Phone Number'
-        verify: 'phone'
+        array:
+          op: 'addToSet'
+          label: 'Add Phone'
+          verify: 'phone'
       1:
         id: 'email'
         label: 'E-mail address'
-        verify: 'email'
+        array:
+          op: 'addToSet'
+          label: 'Add Email'
+          verify: 'email'
       2:
         heading: 'Address'
         inputs:
@@ -37,12 +43,13 @@
           3:
             id: 'address.post_code'
             label: 'Post Code'
-  3:
+  2:
     heading: 'Job History'
-    multiple: true
-    add_btn:
-      name: 'Add Experience'
+    array:
+      label: 'Add Experience'
+      heading: 'Experience $'
       op: 'push'
+      verify: ['date.end>date.start']
     inputs:
       0:
         id: 'job.$.title'
@@ -55,34 +62,40 @@
         id: 'job.$.summary'
         label: 'Summary'
       3:
-        id: 'job.$.start_date'
+        id: 'job.$.date_start'
         label: 'Date Start'
-        verify: 'date'
+        verify: 'moment_date'
       4:
-        id: 'job.$.end_date'
+        id: 'job.$.date_end'
         label: 'Date Finish'
-        verify:
-  4:
+        verify: 'moment_date'
+  3:
     heading: 'Allergies'
-    multiple: true
     optional: true
     inputs:
       0:
-        id: 'allergy.$.text'
-        label: false,
+        id: 'allergy.$'
+        label: false
+        array:
+          label: 'Add Allergy'
+          op: 'addToSet'
         placeholder: 'Allergy eg. Nuts, Lactose, Gluten'
 }
+
+# if section.heading view makes an form-section
+# if input.heading view makes an sub-form
+# if input.heading in input.heading view makes an sub-sub-form
+# if section.array and section.heading, id is not required
 
 # input.type defaults to text
 # input.placeholder defaults to input.label
 # input.verify maps to verification function
 
-# if input.heading make an form-section
-# if input.heading within input.heading make an sub-form-section
-# if input.multiple && input.add_btn
-#   if add_btn op can only be push or unshift
-#   $ sign in input is evaluated to be a number
+# input.array,   indicates value is an array of values
+# it is illegal to have an array within an array given that it is hard to implement this in mongo.
+# input.id phone.$, where dollar sign is reference to array position
+# input.append.op =  push or unshift or addToSet
 
 
-# if input.optional label can be left blank
+# if optional field can be left blank, by default requires at least 1
 # if label is false don't show label

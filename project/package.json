@@ -1,0 +1,25 @@
+{
+  "name": "personal-details-form",
+  "version": "1.0.0",
+  "description": "simple web form parsing, tobe connected to mongodb backend",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lee182/personal-details-form.git"
+  },
+  "keywords": [
+    "react",
+    "mongodb",
+    "forms",
+    "cson"
+  ],
+  "author": "Jonathan T L Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lee182/personal-details-form/issues"
+  },
+  "homepage": "https://github.com/Lee182/personal-details-form#readme"
+}
