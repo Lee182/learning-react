@@ -14,10 +14,22 @@ class TodoBox extends React.Component {
       data: a
     })
   }
+  removeTodo(todoTitle){
+    console.log('herer')
+    let a = Object.assign([], this.state.data)
+    const i = a.findIndex(function(o){
+      return o.title = todoTitle
+    })
+    if (i > -1){
+      a.splice(i, 1)
+      this.setState({data: a})
+    }
+  }
   render() {
     return (<div className="todoBox">
       <h1>Todos</h1>
-      <TodoList data={this.state.data}/>
+      <TodoList data={this.state.data}
+        removeTodo={this.removeTodo.bind(this)}/>
       <TodoForm data={this.state.data} addTodo={this.addTodo.bind(this)}/>
     </div>)
   }
@@ -29,7 +41,7 @@ class TodoList extends React.Component {
   }
   render() {
     var todos = this.props.data.map((o) => {
-      return <Todo title={o.title} key={o.title}>{o.detail}</Todo>
+      return <Todo title={o.title} key={o.title} removeTodo={this.props.removeTodo}>{o.detail}</Todo>
     })
     return (
       <div className="todoList">
@@ -59,6 +71,9 @@ class Todo extends React.Component {
       style: style[styleName]
     })
   }
+  handleRemove(e){
+    this.props.removeTodo(this.props.title)
+  }
   render() {
     // console.log(this.props)
     return (<tr style={this.state.style}>
@@ -67,6 +82,9 @@ class Todo extends React.Component {
       </td>
       <td style={style.tableContent}>{this.props.title}</td>
       <td style={style.tableContent}>{this.props.children}</td>
+      <td onClick={this.handleRemove.bind(this)}>
+        <button>X</button>
+      </td>
     </tr>)
   }
 }
@@ -95,6 +113,12 @@ class TodoForm extends React.Component {
   handleAdd(e) {
     this.props.addTodo(this.state)
   }
+  handleEnter(e){
+    console.log(e)
+    if (e.keyCode === 13){
+      this.handleAdd(this.state)
+    }
+  }
   render() {
     return (<div>
       Title: <input type="text"
@@ -103,7 +127,8 @@ class TodoForm extends React.Component {
       <br/>
       Detail: <input type="text"
         value={this.state.detail}
-        onChange={this.changeDetail.bind(this)} />
+        onChange={this.changeDetail.bind(this)}
+        onKeyPress={this.handleEnter.bind(this)}/>
       <button onClick={this.handleAdd.bind(this)}>Add</button>
     </div>)
   }
