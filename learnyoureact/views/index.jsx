@@ -36,14 +36,21 @@ class TodoList extends React.Component {
 class Todo extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {checked: false}
+    this.state = {
+      checked: false,
+      style: style.todo__not_checked
+    }
   }
   handleChange(e) {
-    this.setState({checked: !this.state.checked})
+    var styleName = 'todo__' + (!this.state.checked ? 'checked': 'not_checked')
+    this.setState({
+      checked: !this.state.checked,
+      style: style[styleName]
+    })
   }
   render() {
     // console.log(this.props)
-    return (<tr>
+    return (<tr style={this.state.style}>
       <td style={style.tableContent}>
         <input type="checkbox" checked={this.state.checked} onChange={this.handleChange.bind(this)}/>
       </td>
@@ -53,11 +60,11 @@ class Todo extends React.Component {
   }
 }
 
-// throws server error
-// Todo.propTypes = {
-//   title: React.PropTypes.string.isRequired,
-//   children: React.PropTypes.string.isRequired
-// }
+// throws server warning
+Todo.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  children: React.PropTypes.string.isRequired
+}
 
 class TodoForm extends React.Component {
   render() {
@@ -68,6 +75,12 @@ class TodoForm extends React.Component {
 let style = {
   tableContent: {
     border: "1px solid black"
+  },
+  todo__checked: {
+    textDecoration: 'line-through'
+  },
+  todo__not_checked: {
+    textDecoration: 'none'
   }
 }
 export default TodoBox

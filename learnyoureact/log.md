@@ -109,3 +109,6 @@ after resolving them errors, i can now use the [React Developer Tools Firefox ex
 now the application size is
   index.html   1.11KB
   bundle.js  723.84KB
+
+## Completed css2
+basically conditional style binding, where the style is updated with the state change.
