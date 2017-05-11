@@ -1,0 +1,35 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='styl.css')
+    title learnyounode-invuejs
+  body
+    #app
+      .todoBox
+        h1 Todos
+        .todoList: table
+          tbody
+            tr(
+              v-for='(todo, i) in todos',
+              :class='{strike: todo.checked}'
+            )
+              td.tableContent
+                input(
+                  type='checkbox',
+                  :checked='todo.checked'
+                  @change='todo.checked=!todo.checked')
+              td.tableContent {{ todo.title }}
+              td.tableContent {{ todo.detail }}
+              td
+                button(@click='removeTodo(todo)') X
+        .todoForm
+          | Title: 
+          input(v-model='addTodoForm.title')
+          br
+          | Detail: 
+          input(v-model='addTodoForm.detail', @keypress.enter='addTodo')
+          button(@click='addTodo') Add
+    script(src='https://unpkg.com/vue')
+    script(src='bundle.js')

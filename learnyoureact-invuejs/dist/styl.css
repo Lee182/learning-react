@@ -1,0 +1,9 @@
+.strike {
+  text-decoration: line-through;
+}
+.tableContent {
+  border: 1px solid #000;
+}
+.todoList table {
+  border: 2px solid #000;
+}

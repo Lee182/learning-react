@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node program.js",
-    "frontend": "node program.js 3000 Milk 13:00"
+    "frontend": "node program.js 3001 Milk 13:00"
   },
   "author": "",
   "license": "ISC",
