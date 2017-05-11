@@ -1,24 +1,31 @@
 import React from 'react';
 
 class TodoBox extends React.Component {
+  constructor(props){
+    super(props)
+  }
   render() {
     return (<div className="todoBox">
       <h1>Todos</h1>
-      <TodoList/>
+      <TodoList data={this.props.data}/>
       <TodoForm/>
     </div>)
   }
 }
 
 class TodoList extends React.Component {
+  constructor(props){
+    super(props)
+  }
   render() {
+    var todos = this.props.data.map((o) => {
+      return <Todo title={o.title} key={o.title}>{o.detail}</Todo>
+    })
     return (
       <div className="todoList">
         <table style={{border: "2px solid black"}}>
           <tbody>
-            <Todo title="Shopping">Milk</Todo>
-            <Todo title="Hair cut">13:00</Todo>
-            <Todo title="Learn React">15:00</Todo>
+            {todos}
           </tbody>
         </table>
       </div>

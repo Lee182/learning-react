@@ -10,7 +10,7 @@ learnyoureact verify program.js
 ## Components
 React's JSX conventions UpperCase for Classes
 and lowerCase for elements
-```jsx
+```js
   export default class MyComponent extends React.Component {/*...*/};
   let myElement = <MyComponent someProperty={true} />;
   ReactDOM.render(myElement, document.getElementById('example'));
@@ -70,8 +70,20 @@ render() {
 used this syntax within a component to update `this.state.checked`.
 Confuzed about server-side rendered app, not clear in intro.
 
-# CSS
+## CSS
 uses inline style binding of.
 ```js
 <h1 style={styleObj.heading}>Hello World</h1>
 ```
+
+## Props from server
+Working with lists in this example
+```js
+var todos = data.map(()=>{
+  return <Todo title=o.title key=o.title>detail=o.detail</Todo>
+})
+<tbody>
+  {todos}
+</tbody>
+```
+Note also in this expamle `constructor(props)` and `super(props)` has been used to apply props to this. And that data has to flow from the parent `TodoBox` to `TodoList` to then make the `Todo` elments.
