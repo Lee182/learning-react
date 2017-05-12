@@ -11,8 +11,8 @@ out_path = path.join(__dirname, 'form.json')
 Promise.resolve()
   .then(readForm)
   .then(parseForm)
+  .then(mapFormObject)
   .then(function(o){
-    console.log(o)
     return o
   })
   .then(writeOut)
@@ -30,27 +30,54 @@ function readForm() {return new Promise(function(resolve,reject){
   })
 })}
 
+function convertDigitsToArray(o) {
+  var a = Object.keys(o).reduce(function(arr, item, i){
+    arr.push(o[item])
+    return arr
+  }, [])
+  return a
+}
+function mapFormObject(o) {
+  return convertDigitsToArray(o)
+  .map(function(section){
+    if (section.inputs){
+      section.inputs = convertDigitsToArray(section.inputs)
+      section.inputs = section.inputs.map(function(input){
+        if (input.heading && input.inputs) {
+          input.inputs = convertDigitsToArray(input.inputs)
+        }
+        return input
+      })
+    }
+    return section
+  })
+}
+
 function parseForm(cson_str) {return new Promise(function(resolve, reject){
   cson.parseCSONString(cson_str, function(err, o){
     if (err) {
       return reject({err, message: 'Error: cson.parseCSONString'})
     }
-    let out = Object.keys(o).reduce(function(arr, section, i){
-      var inputs = []
-      Object.keys(o[section].inputs).forEach(function(input, i){
-        inputs.push(o[section].inputs[input])
-      })
-      o[section].inputs = inputs
-      arr.push(o[section])
-      return arr
-    }, [])
-
-    resolve(out)
+    resolve(o)
   })
 }) }
 
-function writeOut(o) {
-  fs.writeFileSync(out_path, JSON.stringify(o, null, 2))
+function writeOut(o) {return new Promise(function(resolve, reject){
+  fs.writeFile(out_path, 'module.exports = '+JSON.stringify(o, null, 2), function(err){
+    if (err) {
+      return reject({err, message: 'writeOut'})
+    }
+    resolve(o)
+  })
+})}
+
+function extractInputs(o) {
+  var inputs = []
+  o.forEach(function(section){
+    section.inputs.forEach(function(input){
+
+    })
+  })
 }
 
 function ensureUniqueIds(ids) {

@@ -1,0 +1,86 @@
+body
+  background-color #6ec2bd
+
+*
+  box-sizing border-box
+  margin 0
+  padding 0
+
+
+
+h1
+  padding 1rem
+  text-align center
+  font-size 2rem
+  font-weight 300
+
+.formSections
+  padding .5rem
+  @media screen and (max-width: 300px)
+    padding .5rem 0
+  display flex
+  flex-flow row wrap
+  justify-content center
+  align-items flex-start
+
+.formSection
+  max-width 400px
+  width 100%
+  flex-grow 1
+  background-color white
+  margin .5rem
+  @media screen and (max-width: 400px)
+    margin .5rem 0
+  h2
+    font-size 1.7rem
+    font-weight 300
+    padding .8rem
+  .formInput
+    //border 1px solid rgba(28, 43, 77, 0.5)
+    padding .5rem
+    margin .5rem 0
+    width 100%
+    .label
+      width 100%
+      display block
+      padding-bottom .3rem
+    .input
+      width 100%
+      &-remove
+        width calc(100% - 2rem) !important
+
+    textarea.input
+      resize vertical
+
+
+.FormSubSection
+  margin .5rem 0
+  border-left .5rem solid #888
+.headingSub
+  background-color #d7d7d7
+  padding .8rem
+  font-weight 300
+
+
+
+
+
+
+
+
+
+
+
+.CountDownDate
+  border-bottom 2px solid rgba(0, 0, 0, 0.4)
+
+.CountDown
+  font-size 5rem
+  font-weight 200
+  span
+    span
+      &:nth-child(2)
+        opacity .4
+
+p
+  opacity .8

@@ -1,0 +1,46 @@
+single_field_validation:
+  # look at input.validate
+  name: ''
+  summary: ''
+  phones:
+    $: 'phone'
+  emails:
+    $: 'email'
+  address:
+    housenumber:
+      optional: true
+      value: 'house_number'
+    street: ''
+    city: ''
+    country: ''
+    post_code: 'post_code'
+  jobs:
+    $:
+      employer: ''
+      summary: ''
+      date_start: 'moment_date'
+      date_end: 'moment_date'
+  allergies:
+    $:
+      optional: true
+      value: ''
+  clinical_notes:
+    $:
+      note: ''
+      date: 'moment_date_vrecent'
+
+multi_field_validation: # look at input.array.validate
+  0:
+    requires: [
+      'jobs.$.date_start'
+      'jobs.$.date_end'
+    ]
+    validate: 'dateEndGTdateStart'
+  1:
+    requires: [
+      'address.housenumber'
+      'address.city'
+      'address.country'
+      'address.post_code'
+    ]
+    validate: 'osm_address'

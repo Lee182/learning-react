@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "heading": "Personal Details",
     "inputs": [
@@ -9,7 +9,8 @@
       },
       {
         "id": "summary",
-        "label": "Summary"
+        "label": "Summary",
+        "inputType": "textarea"
       }
     ]
   },
@@ -17,45 +18,55 @@
     "heading": "Contact Info",
     "inputs": [
       {
-        "id": "phones",
+        "id": "phones.$",
         "label": "Phone",
         "placeholder": "Phone Number",
+        "validate": "phone",
         "array": {
           "op": "addToSet",
-          "label": "Add Phone",
-          "verify": "phone"
+          "label": "Add Phone"
         }
       },
       {
-        "id": "email",
+        "id": "emails.$",
         "label": "E-mail address",
+        "validate": "email",
         "array": {
           "op": "addToSet",
-          "label": "Add Email",
-          "verify": "email"
+          "label": "Add E-mail address"
         }
       },
       {
         "heading": "Address",
-        "inputs": {
-          "0": {
+        "validate": {
+          "requires": "*",
+          "validate": "osm_address"
+        },
+        "inputs": [
+          {
             "id": "address.housenumber",
             "label": "House Number",
-            "verify": "house_number"
+            "validate": "house_number",
+            "optional": true
           },
-          "1": {
+          {
+            "id": "address.street",
+            "label": "Street"
+          },
+          {
             "id": "address.city",
             "label": "City"
           },
-          "2": {
+          {
             "id": "address.country",
             "label": "Country"
           },
-          "3": {
+          {
             "id": "address.post_code",
-            "label": "Post Code"
+            "label": "Post Code",
+            "validate": "post_code"
           }
-        }
+        ]
       }
     ]
   },
@@ -65,9 +76,13 @@
       "label": "Add Experience",
       "heading": "Experience $",
       "op": "push",
-      "verify": [
-        "date.end>date.start"
-      ]
+      "validate": {
+        "requires": [
+          3,
+          4
+        ],
+        "validate": "dateEndGTdateStart"
+      }
     },
     "inputs": [
       {
@@ -75,38 +90,59 @@
         "label": "Job Title"
       },
       {
-        "id": "job.$.employer",
+        "id": "jobs.$.employer",
         "label": "Employer",
         "placeholder": "Employer/Organisation"
       },
       {
-        "id": "job.$.summary",
-        "label": "Summary"
+        "id": "jobs.$.summary",
+        "label": "Summary",
+        "inputType": "textarea"
       },
       {
-        "id": "job.$.date_start",
+        "id": "jobs.$.date_start",
         "label": "Date Start",
-        "verify": "moment_date"
+        "validate": "moment_date"
       },
       {
-        "id": "job.$.date_end",
+        "id": "jobs.$.date_end",
         "label": "Date Finish",
-        "verify": "moment_date"
+        "validate": "moment_date"
       }
     ]
   },
   {
     "heading": "Allergies",
-    "optional": true,
     "inputs": [
       {
-        "id": "allergy.$",
+        "id": "allergies.$",
         "label": false,
+        "placeholder": "Allergy eg. Nuts, Lactose, Gluten",
+        "optional": true,
         "array": {
           "label": "Add Allergy",
           "op": "addToSet"
-        },
-        "placeholder": "Allergy eg. Nuts, Lactose, Gluten"
+        }
+      }
+    ]
+  },
+  {
+    "heading": "Clinical Notes",
+    "array": {
+      "label": "Add Note",
+      "op": "push"
+    },
+    "inputs": [
+      {
+        "id": "clinical_notes.$.note",
+        "placeholder": "Notes",
+        "inputType": "textarea"
+      },
+      {
+        "id": "clinical_notes.$.date",
+        "hidden": true,
+        "default": "moment_now",
+        "validate": "moment_date_vrecent"
       }
     ]
   }

@@ -1,0 +1,84 @@
+body {
+  background-color: #6ec2bd;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 300;
+}
+.formSections {
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+@media screen and (max-width: 300px) {
+  .formSections {
+    padding: 0.5rem 0;
+  }
+}
+.formSection {
+  max-width: 400px;
+  width: 100%;
+  flex-grow: 1;
+  background-color: #fff;
+  margin: 0.5rem;
+}
+@media screen and (max-width: 400px) {
+  .formSection {
+    margin: 0.5rem 0;
+  }
+}
+.formSection h2 {
+  font-size: 1.7rem;
+  font-weight: 300;
+  padding: 0.8rem;
+}
+.formSection .formInput {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+.formSection .formInput .label {
+  width: 100%;
+  display: block;
+  padding-bottom: 0.3rem;
+}
+.formSection .formInput .input {
+  width: 100%;
+}
+.formSection .formInput .input-remove {
+  width: calc(100% - 2rem) !important;
+}
+.formSection .formInput textarea.input {
+  resize: vertical;
+}
+.FormSubSection {
+  margin: 0.5rem 0;
+  border-left: 0.5rem solid #888;
+}
+.headingSub {
+  background-color: #d7d7d7;
+  padding: 0.8rem;
+  font-weight: 300;
+}
+.CountDownDate {
+  border-bottom: 2px solid rgba(0,0,0,0.4);
+}
+.CountDown {
+  font-size: 5rem;
+  font-weight: 200;
+}
+.CountDown span span:nth-child(2) {
+  opacity: 0.4;
+}
+p {
+  opacity: 0.8;
+}

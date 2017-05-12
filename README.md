@@ -1,4 +1,4 @@
-# learning-react
+# personal-details-form
 
 ## folder structure
 ```

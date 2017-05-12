@@ -1,86 +1,111 @@
-{
-  0:
-    heading: 'Personal Details'
-    inputs:
-      0:
-        id: 'name'
-        label: 'Name'
-        placeholder: 'John Doe'
-      1:
-        id: 'summary'
-        label: 'Summary'
-  1:
-    heading: 'Contact Info'
-    inputs:
-      0:
-        id: 'phones'
-        label: 'Phone'
-        placeholder: 'Phone Number'
-        array:
-          op: 'addToSet'
-          label: 'Add Phone'
-          verify: 'phone'
-      1:
-        id: 'email'
-        label: 'E-mail address'
-        array:
-          op: 'addToSet'
-          label: 'Add Email'
-          verify: 'email'
-      2:
-        heading: 'Address'
-        inputs:
-          0:
-            id: 'address.housenumber'
-            label: 'House Number'
-            verify: 'house_number'
-          1:
-            id: 'address.city'
-            label: 'City'
-          2:
-            id: 'address.country'
-            label: 'Country'
-          3:
-            id: 'address.post_code'
-            label: 'Post Code'
-  2:
-    heading: 'Job History'
-    array:
-      label: 'Add Experience'
-      heading: 'Experience $'
-      op: 'push'
-      verify: ['date.end>date.start']
-    inputs:
-      0:
-        id: 'job.$.title'
-        label: 'Job Title'
-      1:
-        id: 'job.$.employer'
-        label: 'Employer'
-        placeholder: 'Employer/Organisation'
-      2:
-        id: 'job.$.summary'
-        label: 'Summary'
-      3:
-        id: 'job.$.date_start'
-        label: 'Date Start'
-        verify: 'moment_date'
-      4:
-        id: 'job.$.date_end'
-        label: 'Date Finish'
-        verify: 'moment_date'
-  3:
-    heading: 'Allergies'
-    optional: true
-    inputs:
-      0:
-        id: 'allergy.$'
-        label: false
-        array:
-          label: 'Add Allergy'
-          op: 'addToSet'
-        placeholder: 'Allergy eg. Nuts, Lactose, Gluten'
-}
+0:
+  heading: 'Personal Details'
+  inputs:
+    0:
+      id: 'name'
+      label: 'Name'
+      placeholder: 'John Doe'
+    1:
+      id: 'summary'
+      label: 'Summary'
+      inputType: 'textarea'
+1:
+  heading: 'Contact Info'
+  inputs:
+    0:
+      id: 'phones.$'
+      label: 'Phone'
+      placeholder: 'Phone Number'
+      validate: 'phone'
+      array:
+        op: 'addToSet'
+        label: 'Add Phone'
+    1:
+      id: 'emails.$'
+      label: 'E-mail address'
+      validate: 'email'
+      array:
+        op: 'addToSet'
+        label: 'Add E-mail address'
+    2:
+      heading: 'Address'
+      validate:
+        requires: '*'
+        validate: 'osm_address'
+      inputs:
+        0:
+          id: 'address.housenumber'
+          label: 'House Number'
+          validate: 'house_number'
+          optional: true
+        1:
+          id: 'address.street'
+          label: 'Street'
+        2:
+          id: 'address.city'
+          label: 'City'
+        3:
+          id: 'address.country'
+          label: 'Country'
+        4:
+          id: 'address.post_code'
+          label: 'Post Code'
+          validate: 'post_code'
+2:
+  heading: 'Job History'
+  array:
+    label: 'Add Experience'
+    heading: 'Experience $'
+    op: 'push'
+    validate:
+      requires: [3, 4]
+      validate: 'dateEndGTdateStart'
+  inputs:
+    0:
+      id: 'job.$.title'
+      label: 'Job Title'
+    1:
+      id: 'jobs.$.employer'
+      label: 'Employer'
+      placeholder: 'Employer/Organisation'
+    2:
+      id: 'jobs.$.summary'
+      label: 'Summary'
+      inputType: 'textarea'
+    3:
+      id: 'jobs.$.date_start'
+      label: 'Date Start'
+      validate: 'moment_date'
+    4:
+      id: 'jobs.$.date_end'
+      label: 'Date Finish'
+      validate: 'moment_date'
+3:
+  heading: 'Allergies'
+  inputs:
+    0:
+      id: 'allergies.$'
+      label: false
+      placeholder: 'Allergy eg. Nuts, Lactose, Gluten'
+      optional: true
+      array:
+        label: 'Add Allergy'
+        op: 'addToSet'
+4:
+  heading: 'Clinical Notes'
+  array:
+    label: 'Add Note'
+    op: 'push'
+  inputs:
+    0:
+      id: 'clinical_notes.$.note'
+      placeholder: 'Notes'
+      inputType: 'textarea'
+    1:
+      id: 'clinical_notes.$.date'
+      hidden: true
+      default: 'moment_now'
+      validate: 'moment_date_vrecent'
 
 # if section.heading view makes an form-section
 # if input.heading view makes an sub-form
@@ -89,7 +114,7 @@
 
 # input.type defaults to text
 # input.placeholder defaults to input.label
-# input.verify maps to verification function
+# input.validate maps to verification function
 
 # input.array,   indicates value is an array of values
 # it is illegal to have an array within an array given that it is hard to implement this in mongo.
