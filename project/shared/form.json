@@ -61,7 +61,8 @@
           "id": "address.housenumber",
           "label": "House Number",
           "validate": "house_number",
-          "optional": true
+          "optional": true,
+          "input_type": "number"
         },
         {
           "id": "address.street",
@@ -112,17 +113,19 @@
         {
           "id": "jobs.$.summary",
           "label": "Summary",
-          "inputType": "textarea"
+          "tag": "textarea"
         },
         {
           "id": "jobs.$.date_start",
           "label": "Date Start",
-          "validate": "moment_date"
+          "validate": "moment_date",
+          "input_type": "month"
         },
         {
           "id": "jobs.$.date_end",
           "label": "Date Finish",
-          "validate": "moment_date"
+          "validate": "moment_date",
+          "input_type": "month"
         }
       ]
     }
@@ -170,7 +173,7 @@
         {
           "id": "summary",
           "label": "Summary",
-          "inputType": "textarea"
+          "tag": "textarea"
         }
       ]
     },
@@ -213,7 +216,8 @@
               "id": "address.housenumber",
               "label": "House Number",
               "validate": "house_number",
-              "optional": true
+              "optional": true,
+              "input_type": "number"
             },
             {
               "id": "address.street",
@@ -266,17 +270,19 @@
         {
           "id": "jobs.$.summary",
           "label": "Summary",
-          "inputType": "textarea"
+          "tag": "textarea"
         },
         {
           "id": "jobs.$.date_start",
           "label": "Date Start",
-          "validate": "moment_date"
+          "validate": "moment_date",
+          "input_type": "month"
         },
         {
           "id": "jobs.$.date_end",
           "label": "Date Finish",
-          "validate": "moment_date"
+          "validate": "moment_date",
+          "input_type": "month"
         }
       ]
     },
@@ -311,7 +317,7 @@
         {
           "id": "clinical_notes.$.note",
           "placeholder": "Notes",
-          "inputType": "textarea"
+          "tag": "textarea"
         },
         {
           "id": "clinical_notes.$.date",

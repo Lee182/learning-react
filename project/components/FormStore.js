@@ -1,5 +1,6 @@
 import { computed, observable, autorun } from 'mobx'
 import form from '../shared/form.json'
+import copyObject from '../shared/copyObject.js'
 
 export class FormStore {
   @observable raw = form
@@ -14,6 +15,8 @@ export class FormStore {
   // react binds inputs to the id key
   @observable ids = {}
 
+  @observable ids_arr = form.ids_arr
+  @observable sections_arr = form.sections_arr
   // form_errors computed from form_ids will
   // run indivual change validation
   // react shows error messages from form_errors
@@ -39,20 +42,14 @@ export class FormStore {
     self._setIdsArr(form.ids_arr, self.addIdArr)
     self._setIdsArr(form.sections_arr, self.addSectionArr)
   }
-
   _setIdsArr(ids, fn) {
     var self = this
-    console.log(ids)
     Object.keys(ids).forEach((id_abstract)=>{
       var n = ids[id_abstract].array.n
       for (var i = 0; i < n; i++) {
         fn.call(self, id_abstract)
       }
     })
-  }
-
-  resetForm() {
-    // form_store = form_store_default
   }
 
   getInputArr() {
@@ -65,12 +62,12 @@ export class FormStore {
   // react input are bound to these ids
   addIdArr(id_abstract) {
     // TODO addToSet and other array.op
-    var a = form.ids_arr[id_abstract].array
+    var a = this.ids_arr[id_abstract].array
 
     var id = id_abstract.split('$').join(a.count)
     this.ids[id] = ''
 
-    a.count++
+    this.ids_arr[id_abstract].array.count++
   }
   removeIdAbstract(id_abstract, i) {
     var a = id_abstract.split('$')
@@ -78,21 +75,15 @@ export class FormStore {
     var id0 = a.join(i)
     var id1 = a.join(j)
     if (this.ids[id0] === undefined) {return}
+
     while(this.ids[id1] !== undefined){
       this.ids[id0] = this.ids[id1]
+      id0 = a.join(i++)
       id1 = a.join(j++)
     }
-    if (j-i === 1) {
-      j = j-1
-    } else {
-      j = j-2
-    }
-    this.ids[a.join(j)] = undefined
     delete this.ids[a.join(j)]
-    var b = form.ids_arr[id_abstract]
-    if (b) {
-      b.array.count--
-    }
+    if (this.ids_arr[id_abstract])
+    this.ids_arr[id_abstract].array.count--
   }
 
   // used when react builds duplicate sections
@@ -106,23 +97,24 @@ export class FormStore {
   addSectionArr(section_id) {
     // TODO addToSet and other array.op
     var self = this
-    var section = form.sections_arr[section_id]
+    var section = this.sections_arr[section_id]
     var a = section.array
     Object.keys(section.ids).forEach((id)=>{
       id = id.split('$').join(a.count)
       self.ids[id] = ''
     })
-    a.count++
+    this.sections_arr[section_id].array.count++
   }
   removeSectionArr(section_id, i) {
     var self = this
-    var section = form.sections_arr[section_id]
+    var section = this.sections_arr[section_id]
     var key_is_undefined = false
     Object.keys(section.ids).forEach((id)=>{
       self.removeIdAbstract(id, i)
     })
-    section.array.count--
+    this.sections_arr[section_id].array.count--
   }
+
   validateForm(){
     // send the form to server for validation
   }
@@ -132,6 +124,6 @@ var store = window.store = new FormStore
 export default store
 
 autorun(()=>{
-  console.log('autorun.store', store)
+  console.log('autorun.store', FormStore)
   console.log('autorun.args', arguments)
 })

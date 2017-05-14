@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FormSections from './FormSections'
 import {observer} from 'mobx-react'
+import FormStore from '../components/FormStore'
 
 @observer
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
   render() {
     return (<div>
       <h1>Personal Details Form</h1>
-      <FormSections form_schema={this.props.store.form}/>
+      <FormSections store={FormStore} form={FormStore.form}/>
     </div>)
   }
 

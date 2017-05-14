@@ -1,48 +1,55 @@
 import React, { Component } from 'react'
-import FormStore from './FormStore'
 import {observer} from 'mobx-react'
 
 @observer
 export default class FormInput extends Component {
-  constructor(props, context) {
+  constructor(props){
     super(props)
+    // var a = this.props.store.ids[this.props.form.id]
+    // this.state = {value: a}
+    // have to use this.state given that was error with not rendering.
   }
   handleCross(e) {
-    console.log('TODO remove FormInput')
     e.preventDefault()
+    var {store, i, id_abstract} = this.props
+    store.removeIdAbstract(id_abstract, i)
+  }
+  changeInput(txt) {
+    this.props.store.ids[this.props.form.id] = txt
+    this.setState({value: this.props.store.ids[this.props.form.id]})
   }
   handleInput(e) {
-    e.target.value
+    this.changeInput(e.target.value)
   }
-  handleKeypress(e) {
-    if (e.keyCode === 13) { // and condition is array
-      console.log('TODO add another input after enter keydown')
-    }
-  }
+
   render() {
-    var {remove} = this.props
-    var {label, placeholder, id, inputType, hidden} = this.props.data
+    var {store, form, remove} = this.props
+    var {label, placeholder, id, tag, hidden, input_type} = form
     // default placeholder
     if (placeholder === undefined) {placeholder = label}
+    if (input_type === undefined) {input_type = 'text'}
 
-    var labelEl = (label) ?
+    var $label = (label) ?
       <label htmlFor={id} className='label'>{label}:</label> : null
-    var crossEl = (remove)? <button onClick={this.handleCross.bind(this)}>X</button>: null
-    var inputClass = (remove) ? 'input input-remove': 'input'
+    var $cross = (remove) ?
+      <button onClick={this.handleCross.bind(this)}>X</button>: null
+    var iclass = (remove) ? 'input input-remove': 'input'
 
 
-    var inputEl = (inputType === 'textarea') ?
-    <textarea id={id} placeholder={placeholder} className={inputClass} onChange={this.handleInput.bind(this)} onKeyDown={this.handleKeypress.bind(this)}/>:
-    <input id={id} placeholder={placeholder} className={inputClass}
-    onChange={this.handleInput.bind(this)} onKeyDown={this.handleKeypress.bind(this)}/>
-
+    var $input = null
+    if (tag === 'textarea') {
+      $input = <textarea id={id} placeholder={placeholder} className={iclass} onChange={this.handleInput.bind(this)}
+      value={store.ids[id]} type={input_type}/>
+    } else {
+       $input = <input id={id} placeholder={placeholder} className={iclass} onChange={this.handleInput.bind(this)} value={store.ids[id]} type={input_type}/>
+    }
     if (hidden) {return null}
 
     // TODO element for error handling.
-    return (<div className='formInput' id={'f-'+id}>
-      {labelEl}
-      {inputEl}
-      {crossEl}
+    return (<div className='f-input' id={'f-'+id}>
+      {$label}
+      {$input}
+      {$cross}
     </div>)
   }
 

@@ -1,25 +1,32 @@
 import React, { Component } from 'react'
 import FormBuilder from './FormBuilder'
 import {observer} from 'mobx-react'
+import copyObject from '../shared/copyObject.js'
 
 @observer
-class FormSection extends Component {
+export default class FormSectionArr extends Component {
   constructor(props, context) {
     super(props)
   }
 
   render() {
-    var {data} = this.props
-    // TODO handle data.array && data.heading
-    var arr = data.inputs.map((o,i)=>{
-      return <FormBuilder data={o} key={i}/>
-    })
-    return (<div className='formSection'>
-      <h2 className='heading'>{data.heading}</h2>
+    // sections_arr lookup count
+    // then map that to an array
+    var a = store.sections_arr[form.section_id]
+    var b = a.array.heading
+    var c = a.array.count
+    for (var i = 0; i < c; i++) {
+      var form0 = copyObject(form)
+      form0.array_parsed = true
+      form0.heading = (b) ? b.split('$').join(i+1) : false
+
+      arr[i] = <FormBuilder store={store} form={form0} key={i} depth={depth1}/>
+    }
+    var h2 =
+    return (<div id={form.section_id} className={fclass}>
+      <h2 className={hclass}>{form.heading}</h2>
       {arr}
     </div>)
+
   }
-
 }
-
-export default FormSection

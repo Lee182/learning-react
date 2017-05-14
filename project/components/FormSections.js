@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import FormSection from './FormSection'
-import FormSectionArr from './FormSectionArr'
 import {observer} from 'mobx-react'
 
 @observer
@@ -10,15 +9,14 @@ class FormSections extends Component {
   }
 
   render() {
-    var formSections = this.props.form_schema
-    .map((o)=>{
-      if (o.heading && o.array) {
-        return <FormSectionArr data={o} key={o.heading}/>
-      }
-      return <FormSection data={o} key={o.heading}/>
+    var {store, form} = this.props
+    var formSections = form.map((o)=>{
+      // o.section_id
+      return <FormSection store={store} form={o} key={o.heading}/>
     })
-    return (<form className='formSections'>
+    return (<form className='f-sections'>
       {formSections}
+      <button className='f-submit'>Submit</button>
     </form>)
   }
 

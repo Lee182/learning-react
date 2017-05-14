@@ -9,7 +9,7 @@
     1:
       id: 'summary'
       label: 'Summary'
-      inputType: 'textarea'
+      tag: 'textarea'
 1:
   heading: 'Contact Info'
   section_id: 'contact-info'
@@ -41,6 +41,7 @@
           label: 'House Number'
           validate: 'house_number'
           optional: true
+          input_type: 'number'
         1:
           id: 'address.street'
           label: 'Street'
@@ -75,15 +76,17 @@
     2:
       id: 'jobs.$.summary'
       label: 'Summary'
-      inputType: 'textarea'
+      tag: 'textarea'
     3:
       id: 'jobs.$.date_start'
       label: 'Date Start'
       validate: 'moment_date'
+      input_type: 'month'
     4:
       id: 'jobs.$.date_end'
       label: 'Date Finish'
       validate: 'moment_date'
+      input_type: 'month'
 3:
   heading: 'Allergies'
   section_id: 'allergies'
@@ -106,7 +109,7 @@
     0:
       id: 'clinical_notes.$.note'
       placeholder: 'Notes'
-      inputType: 'textarea'
+      tag: 'textarea'
     1:
       id: 'clinical_notes.$.date'
       hidden: true
