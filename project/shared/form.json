@@ -1,149 +1,336 @@
-module.exports = [
-  {
-    "heading": "Personal Details",
-    "inputs": [
-      {
-        "id": "name",
-        "label": "Name",
-        "placeholder": "John Doe"
-      },
-      {
-        "id": "summary",
-        "label": "Summary",
-        "inputType": "textarea"
-      }
-    ]
+{
+  "ids": {
+    "name": "",
+    "summary": "",
+    "phones.$": "phone",
+    "emails.$": "email",
+    "address.housenumber": "house_number",
+    "address.street": "",
+    "address.city": "",
+    "address.country": "",
+    "address.post_code": "post_code",
+    "job.$.title": "",
+    "jobs.$.employer": "",
+    "jobs.$.summary": "",
+    "jobs.$.date_start": "moment_date",
+    "jobs.$.date_end": "moment_date",
+    "allergies.$": "",
+    "clinical_notes.$.note": "",
+    "clinical_notes.$.date": "moment_date_vrecent"
   },
-  {
-    "heading": "Contact Info",
-    "inputs": [
-      {
-        "id": "phones.$",
-        "label": "Phone",
-        "placeholder": "Phone Number",
-        "validate": "phone",
-        "array": {
-          "op": "addToSet",
-          "label": "Add Phone"
-        }
+  "ids_optionals": {
+    "address.housenumber": "house_number",
+    "allergies.$": ""
+  },
+  "ids_arr": {
+    "phones.$": {
+      "op": "addToSet",
+      "label": "Add Phone"
+    },
+    "emails.$": {
+      "op": "addToSet",
+      "label": "Add E-mail address"
+    },
+    "allergies.$": {
+      "label": "Add Allergy",
+      "op": "addToSet"
+    }
+  },
+  "sections_id": {
+    "address": {
+      "heading": "Address",
+      "section_id": "address",
+      "validate": {
+        "requires": "*",
+        "validate": "osm_address"
       },
-      {
-        "id": "emails.$",
-        "label": "E-mail address",
-        "validate": "email",
-        "array": {
-          "op": "addToSet",
-          "label": "Add E-mail address"
-        }
-      },
-      {
-        "heading": "Address",
-        "validate": {
-          "requires": "*",
-          "validate": "osm_address"
+      "inputs": [
+        {
+          "id": "address.housenumber",
+          "label": "House Number",
+          "validate": "house_number",
+          "optional": true
         },
-        "inputs": [
-          {
-            "id": "address.housenumber",
-            "label": "House Number",
-            "validate": "house_number",
-            "optional": true
-          },
-          {
-            "id": "address.street",
-            "label": "Street"
-          },
-          {
-            "id": "address.city",
-            "label": "City"
-          },
-          {
-            "id": "address.country",
-            "label": "Country"
-          },
-          {
-            "id": "address.post_code",
-            "label": "Post Code",
-            "validate": "post_code"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "heading": "Job History",
-    "array": {
-      "label": "Add Experience",
-      "heading": "Experience $",
-      "op": "push",
+        {
+          "id": "address.street",
+          "label": "Street"
+        },
+        {
+          "id": "address.city",
+          "label": "City"
+        },
+        {
+          "id": "address.country",
+          "label": "Country"
+        },
+        {
+          "id": "address.post_code",
+          "label": "Post Code",
+          "validate": "post_code"
+        }
+      ]
+    },
+    "job-history": {
+      "heading": "Job History",
+      "section_id": "job-history",
       "validate": {
         "requires": [
           3,
           4
         ],
         "validate": "dateEndGTdateStart"
-      }
-    },
-    "inputs": [
-      {
-        "id": "job.$.title",
-        "label": "Job Title"
       },
-      {
-        "id": "jobs.$.employer",
-        "label": "Employer",
-        "placeholder": "Employer/Organisation"
+      "array": {
+        "label": "Add Experience",
+        "heading": "Experience $",
+        "op": "push"
       },
-      {
-        "id": "jobs.$.summary",
-        "label": "Summary",
-        "inputType": "textarea"
-      },
-      {
-        "id": "jobs.$.date_start",
-        "label": "Date Start",
-        "validate": "moment_date"
-      },
-      {
-        "id": "jobs.$.date_end",
-        "label": "Date Finish",
-        "validate": "moment_date"
-      }
-    ]
-  },
-  {
-    "heading": "Allergies",
-    "inputs": [
-      {
-        "id": "allergies.$",
-        "label": false,
-        "placeholder": "Allergy eg. Nuts, Lactose, Gluten",
-        "optional": true,
-        "array": {
-          "label": "Add Allergy",
-          "op": "addToSet"
+      "inputs": [
+        {
+          "id": "job.$.title",
+          "label": "Job Title"
+        },
+        {
+          "id": "jobs.$.employer",
+          "label": "Employer",
+          "placeholder": "Employer/Organisation"
+        },
+        {
+          "id": "jobs.$.summary",
+          "label": "Summary",
+          "inputType": "textarea"
+        },
+        {
+          "id": "jobs.$.date_start",
+          "label": "Date Start",
+          "validate": "moment_date"
+        },
+        {
+          "id": "jobs.$.date_end",
+          "label": "Date Finish",
+          "validate": "moment_date"
         }
-      }
-    ]
+      ]
+    }
   },
-  {
-    "heading": "Clinical Notes",
-    "array": {
-      "label": "Add Note",
-      "op": "push"
-    },
-    "inputs": [
-      {
-        "id": "clinical_notes.$.note",
-        "placeholder": "Notes",
-        "inputType": "textarea"
+  "sections_arr": {
+    "job-history": {
+      "heading": "Job History",
+      "section_id": "job-history",
+      "validate": {
+        "requires": [
+          3,
+          4
+        ],
+        "validate": "dateEndGTdateStart"
       },
-      {
-        "id": "clinical_notes.$.date",
-        "hidden": true,
-        "default": "moment_now",
-        "validate": "moment_date_vrecent"
-      }
-    ]
-  }
-]
+      "array": {
+        "label": "Add Experience",
+        "heading": "Experience $",
+        "op": "push"
+      },
+      "inputs": [
+        {
+          "id": "job.$.title",
+          "label": "Job Title"
+        },
+        {
+          "id": "jobs.$.employer",
+          "label": "Employer",
+          "placeholder": "Employer/Organisation"
+        },
+        {
+          "id": "jobs.$.summary",
+          "label": "Summary",
+          "inputType": "textarea"
+        },
+        {
+          "id": "jobs.$.date_start",
+          "label": "Date Start",
+          "validate": "moment_date"
+        },
+        {
+          "id": "jobs.$.date_end",
+          "label": "Date Finish",
+          "validate": "moment_date"
+        }
+      ]
+    },
+    "clinical-notes": {
+      "heading": "Clinical Notes",
+      "section_id": "clinical-notes",
+      "array": {
+        "label": "Add Note",
+        "op": "push"
+      },
+      "inputs": [
+        {
+          "id": "clinical_notes.$.note",
+          "placeholder": "Notes",
+          "inputType": "textarea"
+        },
+        {
+          "id": "clinical_notes.$.date",
+          "hidden": true,
+          "default": "moment_now",
+          "validate": "moment_date_vrecent"
+        }
+      ]
+    }
+  },
+  "form": [
+    {
+      "heading": "Personal Details",
+      "section_id": "personal-details",
+      "inputs": [
+        {
+          "id": "name",
+          "label": "Name",
+          "placeholder": "John Doe"
+        },
+        {
+          "id": "summary",
+          "label": "Summary",
+          "inputType": "textarea"
+        }
+      ]
+    },
+    {
+      "heading": "Contact Info",
+      "section_id": "contact-info",
+      "inputs": [
+        {
+          "id": "phones.$",
+          "label": "Phone",
+          "placeholder": "Phone Number",
+          "validate": "phone",
+          "array": {
+            "op": "addToSet",
+            "label": "Add Phone"
+          }
+        },
+        {
+          "id": "emails.$",
+          "label": "E-mail address",
+          "validate": "email",
+          "array": {
+            "op": "addToSet",
+            "label": "Add E-mail address"
+          }
+        },
+        {
+          "heading": "Address",
+          "section_id": "address",
+          "validate": {
+            "requires": "*",
+            "validate": "osm_address"
+          },
+          "inputs": [
+            {
+              "id": "address.housenumber",
+              "label": "House Number",
+              "validate": "house_number",
+              "optional": true
+            },
+            {
+              "id": "address.street",
+              "label": "Street"
+            },
+            {
+              "id": "address.city",
+              "label": "City"
+            },
+            {
+              "id": "address.country",
+              "label": "Country"
+            },
+            {
+              "id": "address.post_code",
+              "label": "Post Code",
+              "validate": "post_code"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Job History",
+      "section_id": "job-history",
+      "validate": {
+        "requires": [
+          3,
+          4
+        ],
+        "validate": "dateEndGTdateStart"
+      },
+      "array": {
+        "label": "Add Experience",
+        "heading": "Experience $",
+        "op": "push"
+      },
+      "inputs": [
+        {
+          "id": "job.$.title",
+          "label": "Job Title"
+        },
+        {
+          "id": "jobs.$.employer",
+          "label": "Employer",
+          "placeholder": "Employer/Organisation"
+        },
+        {
+          "id": "jobs.$.summary",
+          "label": "Summary",
+          "inputType": "textarea"
+        },
+        {
+          "id": "jobs.$.date_start",
+          "label": "Date Start",
+          "validate": "moment_date"
+        },
+        {
+          "id": "jobs.$.date_end",
+          "label": "Date Finish",
+          "validate": "moment_date"
+        }
+      ]
+    },
+    {
+      "heading": "Allergies",
+      "section_id": "allergies",
+      "inputs": [
+        {
+          "id": "allergies.$",
+          "label": false,
+          "placeholder": "Allergy eg. Nuts, Lactose, Gluten",
+          "optional": true,
+          "array": {
+            "label": "Add Allergy",
+            "op": "addToSet"
+          }
+        }
+      ]
+    },
+    {
+      "heading": "Clinical Notes",
+      "section_id": "clinical-notes",
+      "array": {
+        "label": "Add Note",
+        "op": "push"
+      },
+      "inputs": [
+        {
+          "id": "clinical_notes.$.note",
+          "placeholder": "Notes",
+          "inputType": "textarea"
+        },
+        {
+          "id": "clinical_notes.$.date",
+          "hidden": true,
+          "default": "moment_now",
+          "validate": "moment_date_vrecent"
+        }
+      ]
+    }
+  ]
+}

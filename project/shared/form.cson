@@ -1,5 +1,6 @@
 0:
   heading: 'Personal Details'
+  section_id: 'personal-details'
   inputs:
     0:
       id: 'name'
@@ -11,6 +12,7 @@
       inputType: 'textarea'
 1:
   heading: 'Contact Info'
+  section_id: 'contact-info'
   inputs:
     0:
       id: 'phones.$'
@@ -29,6 +31,7 @@
         label: 'Add E-mail address'
     2:
       heading: 'Address'
+      section_id: 'address'
       validate:
         requires: '*'
         validate: 'osm_address'
@@ -53,13 +56,14 @@
           validate: 'post_code'
 2:
   heading: 'Job History'
+  section_id: 'job-history'
+  validate:
+    requires: [3, 4]
+    validate: 'dateEndGTdateStart'
   array:
     label: 'Add Experience'
     heading: 'Experience $'
     op: 'push'
-    validate:
-      requires: [3, 4]
-      validate: 'dateEndGTdateStart'
   inputs:
     0:
       id: 'job.$.title'
@@ -82,6 +86,7 @@
       validate: 'moment_date'
 3:
   heading: 'Allergies'
+  section_id: 'allergies'
   inputs:
     0:
       id: 'allergies.$'
@@ -93,6 +98,7 @@
         op: 'addToSet'
 4:
   heading: 'Clinical Notes'
+  section_id: 'clinical-notes'
   array:
     label: 'Add Note'
     op: 'push'

@@ -4,6 +4,7 @@
 const cson = require('cson')
 const fs = require('fs')
 const path = require('path')
+const separate_logic = require('./separate_logic')
 
 form_path = path.join(__dirname, 'form.cson')
 out_path = path.join(__dirname, 'form.json')
@@ -13,7 +14,7 @@ Promise.resolve()
   .then(parseForm)
   .then(mapFormObject)
   .then(function(o){
-    return o
+    return separate_logic(o)
   })
   .then(writeOut)
   .catch(function(err){
@@ -63,7 +64,7 @@ function parseForm(cson_str) {return new Promise(function(resolve, reject){
 }) }
 
 function writeOut(o) {return new Promise(function(resolve, reject){
-  fs.writeFile(out_path, 'module.exports = '+JSON.stringify(o, null, 2), function(err){
+  fs.writeFile(out_path, JSON.stringify(o, null, 2), function(err){
     if (err) {
       return reject({err, message: 'writeOut'})
     }
