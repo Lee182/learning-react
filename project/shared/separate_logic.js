@@ -10,12 +10,28 @@ module.exports = function main(sections) {
       sections_id[o.section_id] = o
     }
     if (o.section_id && o.array) {
-      sections_arr[o.section_id] = o
+      s = {}
+      s.ids = main(o.inputs).ids
+      s.array = o.array
+      if (s.array.n === undefined) {
+        s.array.n = 1
+      }
+      if (s.array.count === undefined) {
+        s.array.count = 0
+      }
+      sections_arr[o.section_id] = s
     }
     if (o.id) {
       ids[o.id] = o.validate || ''
       if (o.array) {
-        ids_arr[o.id] = o.array
+        ids_arr[o.id] = {}
+        ids_arr[o.id].array = o.array
+        if (ids_arr[o.id].array.n === undefined) {
+          ids_arr[o.id].array.n = 1
+        }
+        if (ids_arr[o.id].array.count === undefined) {
+          ids_arr[o.id].array.count = 0
+        }
       }
       if (o.optional) {
         ids_optionals[o.id] = o.validate || ''
@@ -61,12 +77,11 @@ sections_id
 
 sections_arr
   job-history:
-    ids:
-      job.$.title
-      jobs.$.employer
-      jobs.$.summary
-      jobs.$.date_start
-      jobs.$.date_end
+    job.$.title
+    jobs.$.employer
+    jobs.$.summary
+    jobs.$.date_start
+    jobs.$.date_end
   clinical-notes:
     clinical_notes.$.note
     clinical_notes.$.date

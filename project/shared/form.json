@@ -24,16 +24,28 @@
   },
   "ids_arr": {
     "phones.$": {
-      "op": "addToSet",
-      "label": "Add Phone"
+      "array": {
+        "op": "addToSet",
+        "label": "Add Phone",
+        "n": 1,
+        "count": 0
+      }
     },
     "emails.$": {
-      "op": "addToSet",
-      "label": "Add E-mail address"
+      "array": {
+        "op": "addToSet",
+        "label": "Add E-mail address",
+        "n": 1,
+        "count": 0
+      }
     },
     "allergies.$": {
-      "label": "Add Allergy",
-      "op": "addToSet"
+      "array": {
+        "label": "Add Allergy",
+        "op": "addToSet",
+        "n": 1,
+        "count": 0
+      }
     }
   },
   "sections_id": {
@@ -83,7 +95,9 @@
       "array": {
         "label": "Add Experience",
         "heading": "Experience $",
-        "op": "push"
+        "op": "push",
+        "n": 1,
+        "count": 0
       },
       "inputs": [
         {
@@ -115,67 +129,32 @@
   },
   "sections_arr": {
     "job-history": {
-      "heading": "Job History",
-      "section_id": "job-history",
-      "validate": {
-        "requires": [
-          3,
-          4
-        ],
-        "validate": "dateEndGTdateStart"
+      "ids": {
+        "job.$.title": "",
+        "jobs.$.employer": "",
+        "jobs.$.summary": "",
+        "jobs.$.date_start": "moment_date",
+        "jobs.$.date_end": "moment_date"
       },
       "array": {
         "label": "Add Experience",
         "heading": "Experience $",
-        "op": "push"
-      },
-      "inputs": [
-        {
-          "id": "job.$.title",
-          "label": "Job Title"
-        },
-        {
-          "id": "jobs.$.employer",
-          "label": "Employer",
-          "placeholder": "Employer/Organisation"
-        },
-        {
-          "id": "jobs.$.summary",
-          "label": "Summary",
-          "inputType": "textarea"
-        },
-        {
-          "id": "jobs.$.date_start",
-          "label": "Date Start",
-          "validate": "moment_date"
-        },
-        {
-          "id": "jobs.$.date_end",
-          "label": "Date Finish",
-          "validate": "moment_date"
-        }
-      ]
+        "op": "push",
+        "n": 1,
+        "count": 0
+      }
     },
     "clinical-notes": {
-      "heading": "Clinical Notes",
-      "section_id": "clinical-notes",
+      "ids": {
+        "clinical_notes.$.note": "",
+        "clinical_notes.$.date": "moment_date_vrecent"
+      },
       "array": {
         "label": "Add Note",
-        "op": "push"
-      },
-      "inputs": [
-        {
-          "id": "clinical_notes.$.note",
-          "placeholder": "Notes",
-          "inputType": "textarea"
-        },
-        {
-          "id": "clinical_notes.$.date",
-          "hidden": true,
-          "default": "moment_now",
-          "validate": "moment_date_vrecent"
-        }
-      ]
+        "op": "push",
+        "n": 1,
+        "count": 0
+      }
     }
   },
   "form": [
@@ -206,7 +185,9 @@
           "validate": "phone",
           "array": {
             "op": "addToSet",
-            "label": "Add Phone"
+            "label": "Add Phone",
+            "n": 1,
+            "count": 0
           }
         },
         {
@@ -215,7 +196,9 @@
           "validate": "email",
           "array": {
             "op": "addToSet",
-            "label": "Add E-mail address"
+            "label": "Add E-mail address",
+            "n": 1,
+            "count": 0
           }
         },
         {
@@ -266,7 +249,9 @@
       "array": {
         "label": "Add Experience",
         "heading": "Experience $",
-        "op": "push"
+        "op": "push",
+        "n": 1,
+        "count": 0
       },
       "inputs": [
         {
@@ -306,7 +291,9 @@
           "optional": true,
           "array": {
             "label": "Add Allergy",
-            "op": "addToSet"
+            "op": "addToSet",
+            "n": 1,
+            "count": 0
           }
         }
       ]
@@ -316,7 +303,9 @@
       "section_id": "clinical-notes",
       "array": {
         "label": "Add Note",
-        "op": "push"
+        "op": "push",
+        "n": 1,
+        "count": 0
       },
       "inputs": [
         {
