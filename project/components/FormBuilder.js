@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import FormInput from './FormInput'
 import FormInputArr from './FormInputArr'
 import FormSubSection from './FormSubSection'
+import {observer} from 'mobx-react'
 
+@observer
 export default class FormBuilder extends Component {
   constructor(props, context) {
     super(props)

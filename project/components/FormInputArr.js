@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
 import ArrayInputs from './ArrayInputs'
+import {observer} from 'mobx-react'
 
+@observer
 class FormInputArr extends ArrayInputs {
   constructor(props, context) {
     super(props)

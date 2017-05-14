@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-import form_schema from '../shared/form.json'
 import FormSections from './FormSections'
+import {observer} from 'mobx-react'
 
-// TODO require form via flux store
+@observer
 class App extends Component {
   constructor(props, context) {
     super(props)
-    this.state = {
-      form_schema: form_schema
-    }
   }
 
   render() {
     return (<div>
       <h1>Personal Details Form</h1>
-      <FormSections form_schema={this.state.form_schema}/>
+      <FormSections form_schema={this.props.store.form}/>
     </div>)
   }
 

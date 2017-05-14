@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import FormStore from './FormStore'
+import {observer} from 'mobx-react'
 
+@observer
 export default class FormInput extends Component {
   constructor(props, context) {
     super(props)
@@ -23,7 +26,7 @@ export default class FormInput extends Component {
     if (placeholder === undefined) {placeholder = label}
 
     var labelEl = (label) ?
-      <label for={id} className='label'>{label}:</label> : null
+      <label htmlFor={id} className='label'>{label}:</label> : null
     var crossEl = (remove)? <button onClick={this.handleCross.bind(this)}>X</button>: null
     var inputClass = (remove) ? 'input input-remove': 'input'
 

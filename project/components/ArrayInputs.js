@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
+import {observer} from 'mobx-react'
 
+@observer
 class ArrayInputs extends Component {
   createItem(position, inputdata) {
     var o = Object.assign({}, inputdata)

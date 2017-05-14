@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import FormSection from './FormSection'
 import FormSectionArr from './FormSectionArr'
+import {observer} from 'mobx-react'
 
+@observer
 class FormSections extends Component {
   constructor(props, context) {
     super(props)
