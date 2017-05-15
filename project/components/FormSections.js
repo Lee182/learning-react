@@ -16,7 +16,9 @@ class FormSections extends Component {
     })
     return (<form className='f-sections'>
       {formSections}
-      <button className='f-submit'>Submit</button>
+      <div className='f-submit flex-center'>
+        <button className='btn-submit'>Submit</button>
+      </div>
     </form>)
   }
 

@@ -26,7 +26,7 @@ export default class FormInputArr extends Component {
       inputs[i] = <FormInput store={store} form={form0} key={form0.id} id_abstract={form.id} i={i} remove={remove} />
     }
 
-    var btn = <button onClick={this.handleAdd.bind(this)}>{form.array.label}</button>
+    var btn = <button className='btn-append' onClick={this.handleAdd.bind(this)}>{form.array.label}</button>
 
     return (<div>
       {inputs}

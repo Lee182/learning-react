@@ -32,7 +32,7 @@ export default class FormInput extends Component {
     var $label = (label) ?
       <label htmlFor={id} className='label'>{label}:</label> : null
     var $cross = (remove) ?
-      <button onClick={this.handleCross.bind(this)}>X</button>: null
+      <button className='btn-x' onClick={this.handleCross.bind(this)}>x</button>: null
     var iclass = (remove) ? 'input input-remove': 'input'
 
 

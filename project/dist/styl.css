@@ -1,63 +1,345 @@
-body {
-  background-color: #6ec2bd;
-}
-* {
-  box-sizing: border-box;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html {
+  height: 100vh;
+}
+body {
+  height: 100%;
+  font-size: 1em;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+:focus {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0;
+}
+input,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: 1rem;
+}
+[v-cloak] {
+  display: none !important;
+}
+input,
+button,
+textarea {
+  color: unset;
+  border: none;
+  background: none;
+  font: unset;
+}
+body {
+  background-color: #eee;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-gap {
+  flex: 1;
 }
 h1 {
   padding: 1rem;
   text-align: center;
   font-size: 2rem;
   font-weight: 300;
+  margin: 2rem 1rem 0.5rem 2rem;
 }
-.formSections {
+.f-sections {
   padding: 0.5rem;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 @media screen and (max-width: 300px) {
-  .formSections {
+  .f-sections {
     padding: 0.5rem 0;
   }
 }
-.formSection {
+.f-section-0 {
   max-width: 400px;
   width: 100%;
+  margin: 1rem 0.5rem;
   flex-grow: 1;
   background-color: #fff;
-  margin: 0.5rem;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 3px rgba(0,0,0,0.2);
 }
 @media screen and (max-width: 400px) {
-  .formSection {
+  .f-section-0 {
     margin: 0.5rem 0;
   }
 }
-.formSection h2 {
-  font-size: 1.7rem;
+.f-heading-0 {
+  padding: 0.8rem;
+}
+.f-heading-0 h2 {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+.f-heading-1 {
+  display: flex;
+  align-items: center;
+}
+.f-heading-1 h2 {
+  font-size: 1.2rem;
   font-weight: 300;
   padding: 0.8rem;
 }
-.formSection .formInput {
+.f-input {
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+input.input {
+  flex-grow: 1;
+  border-bottom: 2px solid #d1cfcf;
+  padding: 0.3rem 0.5rem;
+  margin: 0 0.5rem;
+}
+input.input:hover {
+  border-color: #626cc1;
+}
+input.input:active,
+input.input:focus {
+  border-color: #171138;
+}
+textarea.input {
+  border: 2px solid #d1cfcf;
+  border-radius: 0.2rem;
+  border-bottom: 2px solid #d1cfcf;
+  max-width: 100%;
+  width: 100%;
+  flex-basis: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+textarea.input:hover {
+  border-color: #626cc1;
+}
+textarea.input:active,
+textarea.input:focus {
+  border-color: #171138;
+}
+.btn-append {
+  border: 2px solid #3c5ccf;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  color: #3c5ccf;
+  transition: all 0.25s ease;
+}
+.btn-append:hover {
+  background-color: #beccff;
+}
+.btn-append:active {
+  transform: scale(0.95);
+}
+.btn-submit {
+  background-color: #3c5ccf;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  transition: all 0.25s ease;
+}
+.btn-submit:hover {
+  background-color: #5a75d6;
+}
+.btn-submit:active {
+  transform: scale(0.95);
+}
+.btn-x {
+  background: #e34040;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  margin: 0 0.5rem;
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 3px rgba(0,0,0,0.2);
+}
+.btn-x:hover {
+  background: #ff6969;
+}
+.btn-x:active {
+  transform: scale(0.95);
+}
+.f-heading-1 {
+  background-color: #d1dbff;
+}
+.f-section-1 {
+  margin: 1rem;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 3px rgba(0,0,0,0.2);
+}
+@media screen and (max-width: 400px) {
+  .f-section-1 {
+    margin: 0.5rem;
+  }
+}
+.f-submit {
+  width: 100%;
+}
+.f-submit button {
+  width: 100%;
+  max-width: 400px;
+}
+.formInput {
+  border-bottom: 1px solid #000;
   padding: 0.5rem;
   margin: 0.5rem 0;
   width: 100%;
 }
-.formSection .formInput .label {
+.formInput .label {
   width: 100%;
   display: block;
   padding-bottom: 0.3rem;
 }
-.formSection .formInput .input {
+.formInput .input {
   width: 100%;
 }
-.formSection .formInput .input-remove {
+.formInput .input-remove {
   width: calc(100% - 2rem) !important;
 }
-.formSection .formInput textarea.input {
+.formInput .input textarea.input {
   resize: vertical;
 }
 .FormSubSection {
@@ -68,6 +350,9 @@ h1 {
   background-color: #d7d7d7;
   padding: 0.8rem;
   font-weight: 300;
+}
+#address input {
+  text-align: right;
 }
 .CountDownDate {
   border-bottom: 2px solid rgba(0,0,0,0.4);

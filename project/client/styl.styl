@@ -1,53 +1,158 @@
+@require 'lib/jonoreset.styl'
+// TODO add source code pro
+// TODO react router navigation
+// TODO add viewing forms
+
 body
-  background-color #6ec2bd
+  background-color #eee
 
-*
-  box-sizing border-box
-  margin 0
-  padding 0
+shadow()
+  box-shadow 0 0 0 1px rgba(0,0,0,.1),0 2px 3px rgba(0,0,0,.2)
 
-
-
+.flex-center
+  display flex
+  justify-content center
+  align-items center
+.flex-gap
+  flex 1
 h1
   padding 1rem
   text-align center
   font-size 2rem
   font-weight 300
+  margin 2rem 1rem 0.5rem 2rem
 
-.formSections
+.f-sections
   padding .5rem
   @media screen and (max-width: 300px)
     padding .5rem 0
   display flex
-  flex-flow row wrap
+  flex-flow column
   justify-content center
-  align-items flex-start
+  align-items center
 
-.formSection
+.f-section-0
   max-width 400px
   width 100%
-  flex-grow 1
-  background-color white
-  margin .5rem
+  margin 1rem .5rem
   @media screen and (max-width: 400px)
     margin .5rem 0
+  flex-grow 1
+  background-color white
+  shadow()
+
+.f-heading-0
+  padding .8rem
   h2
-    font-size 1.7rem
+    font-size 1.3rem
+    font-weight 300
+
+.f-heading-1
+  h2
+    font-size 1.2rem
     font-weight 300
     padding .8rem
-  .formInput
-    //border 1px solid rgba(28, 43, 77, 0.5)
-    padding .5rem
-    margin .5rem 0
+  display flex
+  align-items center
+
+
+inputborder()
+  border-bottom 2px solid #d1cfcf
+  &:hover
+    border-color #626cc1
+  &:active
+  &:focus
+    border-color #171138
+.f-input
+  padding .5rem
+  display flex
+  flex-flow row wrap
+  align-items center
+.label
+  font-weight 600
+  font-size .9rem
+
+input.input
+  flex-grow 1
+  inputborder()
+  padding .3rem .5rem
+  margin 0 .5rem
+
+textarea.input
+  border 2px solid #d1cfcf
+  border-radius .2rem
+  inputborder()
+  max-width 100%
+  width 100%
+  flex-basis 100%
+  padding .5rem
+  margin .5rem 0
+
+.btn-append
+  border 2px solid #3c5ccf
+  padding .5rem
+  margin .5rem
+  border-radius .5rem
+  color #3c5ccf
+  transition all .25s ease
+  &:hover
+    background-color #beccff
+  &:active
+    transform scale(.95)
+
+.btn-submit
+  background-color #3c5ccf
+  padding 1rem
+  margin 1rem
+  border-radius .5rem
+  color white
+  transition all .25s ease
+  &:hover
+    background-color #5a75d6
+  &:active
+    transform scale(.95)
+
+
+.btn-x
+  background #e34040
+  border-radius 50%
+  height 2rem
+  width 2rem
+  margin 0 .5rem
+  &:hover
+    background #ff6969
+  &:active
+    transform scale(.95)
+  color white
+  shadow()
+
+.f-heading-1
+  background-color #d1dbff
+.f-section-1
+  @media screen and (max-width: 400px)
+    margin .5rem
+  margin 1rem
+  shadow()
+
+.f-submit
+  width 100%
+  button
     width 100%
-    .label
-      width 100%
-      display block
-      padding-bottom .3rem
-    .input
-      width 100%
-      &-remove
-        width calc(100% - 2rem) !important
+    max-width 400px
+
+.formInput
+  border-bottom 1px solid black
+  padding .5rem
+  margin .5rem 0
+  width 100%
+  .label
+    width 100%
+    display block
+    padding-bottom .3rem
+  .input
+    width 100%
+    &-remove
+      width calc(100% - 2rem) !important
 
     textarea.input
       resize vertical
@@ -64,11 +169,8 @@ h1
 
 
 
-
-
-
-
-
+#address input
+  text-align right
 
 
 .CountDownDate

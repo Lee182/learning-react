@@ -2,6 +2,7 @@
   "ids": {
     "name": "",
     "summary": "",
+    "Birthday": "",
     "phones.$": "phone",
     "emails.$": "email",
     "address.housenumber": "house_number",
@@ -174,6 +175,12 @@
           "id": "summary",
           "label": "Summary",
           "tag": "textarea"
+        },
+        {
+          "id": "Birthday",
+          "label": "Birthday",
+          "placeholder": "1996-05-20",
+          "input_type": "date"
         }
       ]
     },

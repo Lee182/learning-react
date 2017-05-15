@@ -55,18 +55,23 @@ class FormSection extends Component {
     }
 
     var btn = (c1 === true) ?
-    <button onClick={this.handleBtnAdd.bind(this)}>{a.array.label}</button>: null
+    <button className='btn-append' onClick={this.handleBtnAdd.bind(this)}>{a.array.label}</button>: null
 
     var h2
     if (form.heading === false) {
       h2 = null
     }
     else if (typeof form.heading === 'string' && form.heading_remove === undefined) {
-      h2 = <h2 className={hclass}>{form.heading}</h2>
+      h2 = <div className={hclass}>
+        <h2>{form.heading}</h2>
+      </div>
     } else {
       h2 = [
-        <h2 className={hclass}>{form.heading}</h2>,
-        <button onClick={this.handleBtnCross.bind(this)}>X</button>
+        <div className={hclass}>
+          <h2>{form.heading}</h2>
+          <div className='flex-gap'></div>
+          <button className='btn-x' onClick={this.handleBtnCross.bind(this)}>x</button>
+        </div>,
       ]
     }
     var id = form.section_id2 || form.section_id
