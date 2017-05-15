@@ -27,10 +27,9 @@ export class FormStore {
     return 2
     // return {'name': []}
   }
-
+  @observable newform_submit_txt = 'Submit'
   constructor() {
     this.setIdsDefault()
-    this.newform_submit_txt = 'Submit'
   }
 
   setIdsDefault() {
@@ -127,7 +126,7 @@ export class FormStore {
   }
   reqNewForm() {
     var self = this
-    self.newform_submit_txt = 'Sending'
+    self.newform_submit_txt = 'Sending...'
     var p = request({
       url: '/new_form',
       method: 'post',
