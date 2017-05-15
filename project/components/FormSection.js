@@ -30,7 +30,8 @@ class FormSection extends Component {
     var arr = []
     if (!form.array || form.array_parsed) {
       arr = form.inputs.map((o,i)=>{
-        return <FormBuilder store={store} form={o} key={i} depth={depth1} />
+        var k = (form.id || form.section_id)+'_'+i
+        return <FormBuilder store={store} form={o} key={k} depth={depth1} />
       })
     }
 
@@ -50,7 +51,7 @@ class FormSection extends Component {
         form0.inputs = JSON.parse(
           JSON.stringify(form0.inputs).split('$').join(i) )
         form0.section_id2 = form0.section_id+'-'+i
-        arr[i] = <FormBuilder store={store} form={form0} key={i} depth={depth1}/>
+        arr[i] = <FormBuilder store={store} form={form0} key={form0.section_id2} depth={depth1}/>
       }
     }
 

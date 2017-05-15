@@ -1,6 +1,6 @@
 import { computed, observable, autorun } from 'mobx'
 import form from '../shared/form.json'
-import copyObject from '../shared/copyObject.js'
+import cp from '../shared/copyObject.js'
 import request from '../client/lib/request.js'
 
 export class FormStore {
@@ -16,8 +16,8 @@ export class FormStore {
   // react binds inputs to the id key
   @observable ids = {}
 
-  @observable ids_arr = form.ids_arr
-  @observable sections_arr = form.sections_arr
+  @observable ids_arr = cp(form.ids_arr)
+  @observable sections_arr = cp(form.sections_arr)
   // form_errors computed from form_ids will
   // run indivual change validation
   // react shows error messages from form_errors
@@ -32,21 +32,29 @@ export class FormStore {
     this.setIdsDefault()
   }
 
+  reset() {
+    var self = this
+    self.ids_arr = cp(form.ids_arr)
+    self.sections_arr = cp(form.sections_arr)
+    self.setIdsDefault()
+    self.newform_submit_txt = 'Submit'
+  }
   setIdsDefault() {
+
     var self = this
     if (self._default) {
-      self.ids = copyObject(self._default)
-      return
-    }
+      self.ids = cp(self._default)
+    } else {
     Object.keys(form.ids).reduce((o, id)=>{
       if ( id.match(/\$/) === null ) {
         self.ids[id] = ''
       }
       return o
     }, {})
-    self._setIdsArr(form.ids_arr, self.addIdArr)
-    self._setIdsArr(form.sections_arr, self.addSectionArr)
-    self._default = copyObject(this.ids)
+    }
+    self._setIdsArr(self.ids_arr, self.addIdArr)
+    self._setIdsArr(self.sections_arr, self.addSectionArr)
+    self._default = cp(self.ids)
   }
   _setIdsArr(ids, fn) {
     var self = this
@@ -141,7 +149,7 @@ export class FormStore {
     this.newform_submit_txt = 'Sent'
     alert('form successfully sent')
     // TODO redirect to new page
-    this.setIdsDefault()
+    this.reset()
     return res
   }
   resFormBad(res) {
