@@ -1,6 +1,7 @@
 import { computed, observable, autorun } from 'mobx'
 import form from '../shared/form.json'
 import copyObject from '../shared/copyObject.js'
+import request from '../client/lib/request.js'
 
 export class FormStore {
   @observable raw = form
@@ -29,10 +30,15 @@ export class FormStore {
 
   constructor() {
     this.setIdsDefault()
+    this.newform_submit_txt = 'Submit'
   }
 
   setIdsDefault() {
     var self = this
+    if (self._default) {
+      self.ids = copyObject(self._default)
+      return
+    }
     Object.keys(form.ids).reduce((o, id)=>{
       if ( id.match(/\$/) === null ) {
         self.ids[id] = ''
@@ -41,6 +47,7 @@ export class FormStore {
     }, {})
     self._setIdsArr(form.ids_arr, self.addIdArr)
     self._setIdsArr(form.sections_arr, self.addSectionArr)
+    self._default = copyObject(this.ids)
   }
   _setIdsArr(ids, fn) {
     var self = this
@@ -117,6 +124,30 @@ export class FormStore {
 
   validateForm(){
     // send the form to server for validation
+  }
+  reqNewForm() {
+    var self = this
+    self.newform_submit_txt = 'Sending'
+    var p = request({
+      url: '/new_form',
+      method: 'post',
+      data: {form: this.ids},
+      json: true
+    })
+    .then(self.resFormGood.bind(this), self.resFormBad.bind(this))
+    return p
+  }
+  resFormGood(res) {
+    console.log('resFormGood',res)
+    this.newform_submit_txt = 'Sent'
+    alert('form successfully sent')
+    // TODO redirect to new page
+    this.setIdsDefault()
+    return res
+  }
+  resFormBad(res) {
+    alert('form unsuccessfully sent')
+    console.log('resFormBad',res)
   }
 }
 
