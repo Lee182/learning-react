@@ -155,7 +155,9 @@
       },
       "array": {
         "label": "Add Note",
+        "heading": "Note $",
         "op": "push",
+        "optional": true,
         "n": 1,
         "count": 0
       }
@@ -316,7 +318,9 @@
       "section_id": "clinical-notes",
       "array": {
         "label": "Add Note",
+        "heading": "Note $",
         "op": "push",
+        "optional": true,
         "n": 1,
         "count": 0
       },

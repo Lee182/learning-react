@@ -18,6 +18,9 @@ export default class FormBuilder extends Component {
     if (form.array && form.heading === undefined) {
       return <FormInputArr store={store} form={form}/>
     }
+    if (form.hidden === true){
+      return null
+    }
     return <FormInput store={store} form={form}/>
   }
 

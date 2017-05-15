@@ -109,6 +109,7 @@
   section_id: 'clinical-notes'
   array:
     label: 'Add Note'
+    heading: 'Note $'
     op: 'push'
   inputs:
     0:
