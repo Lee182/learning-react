@@ -11,7 +11,7 @@
       label: 'Summary'
       tag: 'textarea'
     2:
-      id: 'Birthday'
+      id: 'birthday'
       label: 'Birthday'
       placeholder: '1996-05-20'
       input_type: 'date'
@@ -72,7 +72,7 @@
     op: 'push'
   inputs:
     0:
-      id: 'job.$.title'
+      id: 'jobs.$.title'
       label: 'Job Title'
     1:
       id: 'jobs.$.employer'

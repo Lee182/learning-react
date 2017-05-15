@@ -2,7 +2,7 @@
   "ids": {
     "name": "",
     "summary": "",
-    "Birthday": "",
+    "birthday": "",
     "phones.$": "phone",
     "emails.$": "email",
     "address.housenumber": "house_number",
@@ -10,7 +10,7 @@
     "address.city": "",
     "address.country": "",
     "address.post_code": "post_code",
-    "job.$.title": "",
+    "jobs.$.title": "",
     "jobs.$.employer": "",
     "jobs.$.summary": "",
     "jobs.$.date_start": "moment_date",
@@ -103,7 +103,7 @@
       },
       "inputs": [
         {
-          "id": "job.$.title",
+          "id": "jobs.$.title",
           "label": "Job Title"
         },
         {
@@ -134,7 +134,7 @@
   "sections_arr": {
     "job-history": {
       "ids": {
-        "job.$.title": "",
+        "jobs.$.title": "",
         "jobs.$.employer": "",
         "jobs.$.summary": "",
         "jobs.$.date_start": "moment_date",
@@ -157,7 +157,6 @@
         "label": "Add Note",
         "heading": "Note $",
         "op": "push",
-        "optional": true,
         "n": 1,
         "count": 0
       }
@@ -179,7 +178,7 @@
           "tag": "textarea"
         },
         {
-          "id": "Birthday",
+          "id": "birthday",
           "label": "Birthday",
           "placeholder": "1996-05-20",
           "input_type": "date"
@@ -268,7 +267,7 @@
       },
       "inputs": [
         {
-          "id": "job.$.title",
+          "id": "jobs.$.title",
           "label": "Job Title"
         },
         {
@@ -320,7 +319,6 @@
         "label": "Add Note",
         "heading": "Note $",
         "op": "push",
-        "optional": true,
         "n": 1,
         "count": 0
       },
