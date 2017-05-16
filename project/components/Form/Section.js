@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import FormBuilder from './FormBuilder'
+import Builder from './Builder'
 import {observer} from 'mobx-react'
-import copyObject from '../shared/copyObject.js'
+import cp from '../../shared/copyObject.js'
 
 @observer
-class FormSection extends Component {
+export default class Section extends Component {
   constructor(props, context) {
     super(props)
   }
@@ -31,7 +31,7 @@ class FormSection extends Component {
     if (!form.array || form.array_parsed) {
       arr = form.inputs.map((o,i)=>{
         var k = (form.id || form.section_id)+'_'+i
-        return <FormBuilder store={store} form={o} key={k} depth={depth1} />
+        return <Builder store={store} form={o} key={k} depth={depth1} />
       })
     }
 
@@ -42,7 +42,7 @@ class FormSection extends Component {
       var b = a.array.heading
       var c = a.array.count
       for (var i = 0; i < c; i++) {
-        var form0 = copyObject(form)
+        var form0 = cp(form)
         form0.array_parsed = true
         form0.heading = (b) ? b.split('$').join(i+1) : false
         if (i >= a.array.n) {
@@ -51,7 +51,7 @@ class FormSection extends Component {
         form0.inputs = JSON.parse(
           JSON.stringify(form0.inputs).split('$').join(i) )
         form0.section_id2 = form0.section_id+'-'+i
-        arr[i] = <FormBuilder store={store} form={form0} key={form0.section_id2} depth={depth1}/>
+        arr[i] = <Builder store={store} form={form0} key={form0.section_id2} depth={depth1}/>
       }
     }
 
@@ -84,5 +84,3 @@ class FormSection extends Component {
   }
 
 }
-
-export default FormSection

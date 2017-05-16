@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import FormInput from './FormInput'
+import Input from './Input'
 import {observer} from 'mobx-react'
-import copyObject from '../shared/copyObject.js'
+import cp from '../../shared/copyObject.js'
 
 @observer
 export default class FormInputArr extends Component {
@@ -19,11 +19,11 @@ export default class FormInputArr extends Component {
     const input_count = store.ids_arr[form.id].array.count
     var inputs = []
     for (var i = 0; i < input_count; i++) {
-      let form0 = copyObject(form)
+      let form0 = cp(form)
       let remove = i > 0 || form.optional
       form0.id = form.id.split('$').join(i)
 
-      inputs[i] = <FormInput store={store} form={form0} key={form0.id} id_abstract={form.id} i={i} remove={remove} />
+      inputs[i] = <Input store={store} form={form0} key={form0.id} id_abstract={form.id} i={i} remove={remove} />
     }
 
     var btn = <button className='btn-append' onClick={this.handleAdd.bind(this)}>{form.array.label}</button>

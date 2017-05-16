@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import FormBuilder from './FormBuilder'
+import Builder from './Builder'
 import {observer} from 'mobx-react'
-import copyObject from '../shared/copyObject.js'
+import cp from '../../shared/copyObject.js'
 
 @observer
 export default class FormSectionArr extends Component {
@@ -16,11 +16,11 @@ export default class FormSectionArr extends Component {
     var b = a.array.heading
     var c = a.array.count
     for (var i = 0; i < c; i++) {
-      var form0 = copyObject(form)
+      var form0 = cp(form)
       form0.array_parsed = true
       form0.heading = (b) ? b.split('$').join(i+1) : false
 
-      arr[i] = <FormBuilder store={store} form={form0} key={i} depth={depth1}/>
+      arr[i] = <Builder store={store} form={form0} key={i} depth={depth1}/>
     }
     var h2 =
     return (<div id={form.section_id} className={fclass}>

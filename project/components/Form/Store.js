@@ -1,7 +1,7 @@
 import { computed, observable, autorun } from 'mobx'
-import form from '../shared/form.json'
-import cp from '../shared/copyObject.js'
-import request from '../client/lib/request.js'
+import form from '../../shared/form.json'
+import cp from '../../shared/copyObject.js'
+import request from '../../client/lib/request.js'
 
 export class FormStore {
   @observable raw = form

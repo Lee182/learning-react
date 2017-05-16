@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import FormSection from './FormSection'
-import FormInput from './FormInput'
-import FormInputArr from './FormInputArr'
+import Section from './Section'
+import Input from './Input'
+import InputArr from './InputArr'
 import {observer} from 'mobx-react'
 
 @observer
-export default class FormBuilder extends Component {
+export default class Builder extends Component {
   constructor(props, context) {
     super(props)
   }
@@ -13,15 +13,15 @@ export default class FormBuilder extends Component {
   render() {
     var {store, form, depth} = this.props
     if (form.heading) {
-      return <FormSection store={store} form={form} depth={depth}/>
+      return <Section store={store} form={form} depth={depth}/>
     }
     if (form.array && form.heading === undefined) {
-      return <FormInputArr store={store} form={form}/>
+      return <InputArr store={store} form={form}/>
     }
     if (form.hidden === true){
       return null
     }
-    return <FormInput store={store} form={form}/>
+    return <Input store={store} form={form}/>
   }
 
 }

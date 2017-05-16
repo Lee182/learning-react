@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import FormSections from './FormSections'
 import {observer} from 'mobx-react'
-import FormStore from '../components/FormStore'
+
+import FormStore from '../components/Form/Store'
+import TheForm from '../components/Form/Index'
 
 @observer
-class App extends Component {
+export default class App extends Component {
   constructor(props, context) {
     super(props)
   }
@@ -18,10 +19,8 @@ class App extends Component {
         <a>New Personal Details Form</a>
         <a>Aggregate Personal Detials</a>
       </nav>
-      <FormSections store={FormStore} form={FormStore.form}/>
+      <TheForm store={FormStore} form={FormStore.form}/>
     </div>)
   }
 
 }
-
-export default App
