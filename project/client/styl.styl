@@ -17,9 +17,11 @@ shadow()
 .flex-gap
   flex 1
 
-.f-sections
-  @media screen and (min-width: 600px)
-    margin-left 300px
+.stage
+  transition margin-left .2s ease-in-out
+  &.nav-open
+    @media screen and (min-width: 600px)
+      margin-left 300px
 
 h1
   padding 1rem
@@ -195,5 +197,5 @@ textarea.input
     font-size 2rem
   background white
   shadow()
-  @media screen and (min-width: 600px)
-    display none
+  // @media screen and (min-width: 600px)
+  //   display none

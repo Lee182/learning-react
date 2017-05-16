@@ -23,8 +23,11 @@ export default class App extends Component {
 
   render() {
     var navclass = 'nav'
+    var stageclass = 'stage'
     if (this.state.nav_open === false) {
       navclass += ' hide'
+    } else {
+      stageclass += ' nav-open'
     }
     return (<div>
       <div className='nav-toggle flex-center' onClick={this.toggleNav.bind(this)}>
@@ -49,7 +52,9 @@ export default class App extends Component {
           <span className='nav-underline'>Personal Detials Table</span>
         </a>
       </nav>
-      <TheForm store={FormStore} form={FormStore.form}/>
+      <div className={stageclass}>
+        <TheForm store={FormStore} form={FormStore.form}/>
+      </div>
     </div>)
   }
 
