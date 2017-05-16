@@ -51,6 +51,11 @@ export default class App extends Component {
         <a className='nav-item'>
           <span className='nav-underline'>Personal Detials Table</span>
         </a>
+        <a className='flex-gap'></a>
+        <a className='nav-item nav-footer'>About Service</a>
+        <a className='nav-item nav-footer'>Terms and Conditions</a>
+        <a className='nav-item nav-footer'>ⓒ copyleft
+        </a>
       </nav>
       <div className={stageclass}>
         <TheForm store={FormStore} form={FormStore.form}/>
