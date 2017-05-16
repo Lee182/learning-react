@@ -20,6 +20,7 @@ export default class FormSections extends Component {
       return <FormSection store={store} form={o} key={o.heading}/>
     })
     return (<form className='f-sections'>
+      <h1>Personal Details Form</h1>
       {formSections}
       <div className='f-submit flex-center'>
         <button className='btn-submit' onClick={this.handleSubmit.bind(this)}>{btntxt}</button>

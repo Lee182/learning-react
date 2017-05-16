@@ -11,7 +11,13 @@ class App extends Component {
 
   render() {
     return (<div>
-      <h1>Personal Details Form</h1>
+      <nav>
+        <a>Service 1</a>
+        <a>Service 2</a>
+        <a>Service 3</a>
+        <a>New Personal Details Form</a>
+        <a>Aggregate Personal Detials</a>
+      </nav>
       <FormSections store={FormStore} form={FormStore.form}/>
     </div>)
   }

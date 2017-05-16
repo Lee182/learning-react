@@ -2,7 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
 var app = express()
-var port = 3001
+const port = 3000
 
 var flat = require('flat')
 // var db = require('./db.js')

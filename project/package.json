@@ -5,13 +5,13 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node server/index.js",
     "build-form": "node shared/parseForm.js",
-    "serve": "node server/server.js",
     "build-html": "cp client/index.html dist/index.html",
     "build-js": "webpack",
     "watch-js": "webpack -w",
     "watch-stylus": "stylus -w client/styl.styl -o dist",
-    "dev": "npm-run-all -p serve watch-stylus watch-js build-html"
+    "dev": "npm-run-all -p serve watch-stylus watch-js build-html build-form"
   },
   "repository": {
     "type": "git",
