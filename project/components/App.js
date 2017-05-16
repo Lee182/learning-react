@@ -8,16 +8,46 @@ import TheForm from '../components/Form/Index'
 export default class App extends Component {
   constructor(props, context) {
     super(props)
+    this.state = {nav_open: true}
+  }
+  toggleNav(){
+    this.setState({
+      nav_open: !this.state.nav_open
+    })
+  }
+  hideNav() {
+    this.setState({
+      nav_open: false
+    })
   }
 
   render() {
+    var navclass = 'nav'
+    if (this.state.nav_open === false) {
+      navclass += ' hide'
+    }
     return (<div>
-      <nav>
-        <a>Service 1</a>
-        <a>Service 2</a>
-        <a>Service 3</a>
-        <a>New Personal Details Form</a>
-        <a>Aggregate Personal Detials</a>
+      <div className='nav-toggle flex-center' onClick={this.toggleNav.bind(this)}>
+        <div>☰</div>
+      </div>
+      <nav className={navclass}>
+        <a className='nav-item nav-title'>Service Title</a>
+        <br/>
+        <a className='nav-item'>
+          <span className='nav-underline'>Service 1</span>
+        </a>
+        <a className='nav-item'>
+          <span className='nav-underline'>Service 2</span>
+        </a>
+        <a className='nav-item'>
+          <span className='nav-underline'>Service 3</span>
+        </a>
+        <a className='nav-item'>
+          <span className='nav-underline'>Personal Details Form</span>
+        </a>
+        <a className='nav-item'>
+          <span className='nav-underline'>Personal Detials Table</span>
+        </a>
       </nav>
       <TheForm store={FormStore} form={FormStore.form}/>
     </div>)

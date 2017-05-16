@@ -2,6 +2,7 @@
 // TODO add source code pro
 // TODO react router navigation
 // TODO add viewing forms
+$c_blue = #3c5ccf
 
 body
   background-color #eee
@@ -15,6 +16,11 @@ shadow()
   align-items center
 .flex-gap
   flex 1
+
+.f-sections
+  @media screen and (min-width: 600px)
+    margin-left 300px
+
 h1
   padding 1rem
   text-align center
@@ -89,11 +95,11 @@ textarea.input
   margin .5rem 0
 
 .btn-append
-  border 2px solid #3c5ccf
+  border 2px solid $c_blue
   padding .5rem
   margin .5rem
   border-radius .5rem
-  color #3c5ccf
+  color $c_blue
   transition all .25s ease
   &:hover
     background-color #beccff
@@ -101,7 +107,7 @@ textarea.input
     transform scale(.95)
 
 .btn-submit
-  background-color #3c5ccf
+  background-color $c_blue
   padding 1rem
   margin 1rem
   border-radius .5rem
@@ -140,49 +146,54 @@ textarea.input
     width 100%
     max-width 400px
 
-.formInput
-  border-bottom 1px solid black
-  padding .5rem
-  margin .5rem 0
-  width 100%
-  .label
-    width 100%
-    display block
-    padding-bottom .3rem
-  .input
-    width 100%
-    &-remove
-      width calc(100% - 2rem) !important
-
-    textarea.input
-      resize vertical
-
-
-.FormSubSection
-  margin .5rem 0
-  border-left .5rem solid #888
-.headingSub
-  background-color #d7d7d7
-  padding .8rem
-  font-weight 300
-
-
-
-
 #address input
   text-align right
 
 
-.CountDownDate
-  border-bottom 2px solid rgba(0, 0, 0, 0.4)
 
-.CountDown
-  font-size 5rem
-  font-weight 200
-  span
-    span
-      &:nth-child(2)
-        opacity .4
 
-p
-  opacity .8
+
+
+.nav
+  transition all .2s ease-in-out
+  &.hide
+    left -100%
+  position fixed
+  top 0
+  left 0
+  display flex
+  height 100vh
+  max-width 300px
+  width 100%
+  flex-flow column
+  overflow scroll
+  background white
+  shadow()
+.nav-item
+  display block
+  padding .8rem
+  &.active
+    .nav-underline
+      border-color #626cc1
+.nav-title
+  background #eee
+  font-weight 300
+  font-size 1.5rem
+.nav-underline
+  inputborder()
+
+.nav-toggle
+  position fixed
+  top .5rem
+  right .5rem
+  padding 1rem
+  width 3rem
+  height 3rem
+  border-radius 50%
+  z-index 1
+  & > div
+    font-size 2rem
+  background white
+  shadow()
+  @media screen and (min-width: 600px)
+    display none
