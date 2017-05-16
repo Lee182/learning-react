@@ -3,7 +3,7 @@ const Mongo = require('mongodb')
 let MongoClient = Mongo.MongoClient
 
 const forms_col = 'person_details'
-const eventSysetem = require('../app/browser+node/eventSystem.js')
+const eventSysetem = require('../client/lib/eventSystem.js')
 
 module.exports = function({mongourl}) {
 
@@ -33,8 +33,6 @@ function validateForm(fn) {return function(obj){
 }}
 
 
-}
-
 o.connect = function() {
   console.log('mongo connnecting...')
   return MongoClient.connect(mongourl).then(function(db){
@@ -53,17 +51,10 @@ o.methods.put_form = function({form}){
     validated_form.form,
     {returnOriginal: false}
   ).then(function(res){
+    e.emit('put_form', res.ops[0])
     return res.ops[0]
   })
 }
-
-o.methods.replace_form = function({form, _id}) {
-  var
-  .findOneAndReplace({
-    _id: doc._id
-  }, doc, {returnOriginal: false})
-}
-
 
 
 // decorate functions

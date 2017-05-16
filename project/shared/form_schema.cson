@@ -15,7 +15,7 @@ single_field_validation:
   'jobs.$.summary': 'moment_date'
   'allergies.$': ''
   'clinical_notes.$.note': ''
-  'clinical_notes.$.note': 'moment_date_vrecent'
+  'clinical_notes.$.note': 'date_recent'
 
 optional: [
   'allergies.$', 'address.housenumber'

@@ -135,8 +135,8 @@ export class FormStore {
     // validaion of simpled varibles
   }
   formSubmit() {
-    console.log("here formSubmit")
-    this.ids_errors.name.errors[0] = 'shit'
+    // TODO basic validation
+    this.reqNewForm()
   }
   reqNewForm() {
     var self = this

@@ -2,10 +2,12 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
 var app = express()
-const port = 3000
+const port = 9004
 
 var flat = require('flat')
-// var db = require('./db.js')
+var db = require('./db.js')({
+  mongourl: 'mongodb://localhost:27017/react'
+})
 app.use( bodyParser.json() )
 
 app.use( express.static(path.join(__dirname, '../dist')) )
@@ -13,9 +15,9 @@ app.use( express.static(path.join(__dirname, '../dist')) )
 app.post('/new_form', function(req,res){
   var o = flat.unflatten(req.body)
   console.log(o)
-  setTimeout(function(){
-    res.json({ok: true, _id: 'abc'})
-  },100)
+  db.methods.put_form({form: o}).then(function(res){
+    res.json({ok: true, _id: res._id, res})
+  })
 })
 app.listen(port, function(error) {
   if (error) throw error;

@@ -13,7 +13,7 @@
     2:
       id: 'birthday'
       label: 'Birthday'
-      placeholder: '1996-05-20'
+      placeholder: 'YYYY-MM-DD'
       input_type: 'date'
 1:
   heading: 'Contact Info'
@@ -85,11 +85,13 @@
     3:
       id: 'jobs.$.date_start'
       label: 'Date Start'
+      placeholder: 'YYYY-MM-DD'
       validate: 'moment_date'
       input_type: 'month'
     4:
       id: 'jobs.$.date_end'
       label: 'Date Finish'
+      placeholder: 'YYYY-MM-DD'
       validate: 'moment_date'
       input_type: 'month'
 3:
@@ -120,7 +122,7 @@
       id: 'clinical_notes.$.date'
       hidden: true
       default: 'moment_now'
-      validate: 'moment_date_vrecent'
+      validate: 'date_recent'
 
 # if section.heading view makes an form-section
 # if input.heading view makes an sub-form

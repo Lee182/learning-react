@@ -172,6 +172,14 @@ body {
 .flex-gap {
   flex: 1;
 }
+.stage {
+  transition: margin-left 0.2s ease-in-out;
+}
+@media screen and (min-width: 600px) {
+  .stage.nav-open {
+    margin-left: 300px;
+  }
+}
 h1 {
   padding: 1rem;
   text-align: center;
@@ -232,6 +240,7 @@ h1 {
 }
 input.input {
   flex-grow: 1;
+  transition: border-color 0.2s ease;
   border-bottom: 2px solid #d1cfcf;
   padding: 0.3rem 0.5rem;
   margin: 0 0.5rem;
@@ -239,6 +248,7 @@ input.input {
 input.input:hover {
   border-color: #626cc1;
 }
+input.input.active,
 input.input:active,
 input.input:focus {
   border-color: #171138;
@@ -246,6 +256,7 @@ input.input:focus {
 textarea.input {
   border: 2px solid #d1cfcf;
   border-radius: 0.2rem;
+  transition: border-color 0.2s ease;
   border-bottom: 2px solid #d1cfcf;
   max-width: 100%;
   width: 100%;
@@ -256,33 +267,37 @@ textarea.input {
 textarea.input:hover {
   border-color: #626cc1;
 }
+textarea.input.active,
 textarea.input:active,
 textarea.input:focus {
   border-color: #171138;
 }
 .btn-append {
-  border: 2px solid #3c5ccf;
   padding: 0.5rem;
   margin: 0.5rem;
-  border-radius: 0.5rem;
-  color: #3c5ccf;
   transition: all 0.25s ease;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  border: 2px solid #3c5ccf;
+  color: #3c5ccf;
 }
-.btn-append:hover {
+.btn-append:hover,
+.btn-append:focus {
   background-color: #beccff;
 }
 .btn-append:active {
   transform: scale(0.95);
 }
 .btn-submit {
-  background-color: #3c5ccf;
   padding: 1rem;
   margin: 1rem;
-  border-radius: 0.5rem;
   color: #fff;
   transition: all 0.25s ease;
+  background-color: #3c5ccf;
+  border-radius: 0.5rem;
 }
-.btn-submit:hover {
+.btn-submit:hover,
+.btn-submit:focus {
   background-color: #5a75d6;
 }
 .btn-submit:active {
@@ -297,7 +312,8 @@ textarea.input:focus {
   color: #fff;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 3px rgba(0,0,0,0.2);
 }
-.btn-x:hover {
+.btn-x:hover,
+.btn-x:focus {
   background: #ff6969;
 }
 .btn-x:active {
@@ -322,48 +338,103 @@ textarea.input:focus {
   width: 100%;
   max-width: 400px;
 }
-.formInput {
-  border-bottom: 1px solid #000;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  width: 100%;
-}
-.formInput .label {
-  width: 100%;
-  display: block;
-  padding-bottom: 0.3rem;
-}
-.formInput .input {
-  width: 100%;
-}
-.formInput .input-remove {
-  width: calc(100% - 2rem) !important;
-}
-.formInput .input textarea.input {
-  resize: vertical;
-}
-.FormSubSection {
-  margin: 0.5rem 0;
-  border-left: 0.5rem solid #888;
-}
-.headingSub {
-  background-color: #d7d7d7;
-  padding: 0.8rem;
-  font-weight: 300;
-}
 #address input {
   text-align: right;
 }
-.CountDownDate {
-  border-bottom: 2px solid rgba(0,0,0,0.4);
+.nav {
+  transition: all 0.2s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  height: 100vh;
+  max-width: 300px;
+  width: 100%;
+  flex-flow: column;
+  overflow: scroll;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 3px rgba(0,0,0,0.2);
 }
-.CountDown {
-  font-size: 5rem;
-  font-weight: 200;
+.nav.hide {
+  left: -100%;
 }
-.CountDown span span:nth-child(2) {
-  opacity: 0.4;
+.nav-item {
+  display: block;
+  padding: 0.8rem;
 }
-p {
-  opacity: 0.8;
+.nav-item.active .nav-underline {
+  border-color: #626cc1;
+}
+.nav-title {
+  background: #eee;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+.nav-item.nav-footer {
+  background: #eee;
+  color: #727272;
+}
+.nav-item.nav-footer:hover,
+.nav-item.nav-footer:active,
+.nav-item.nav-footer:focus {
+  color: #000;
+}
+.nav-underline {
+  transition: border-color 0.2s ease;
+  border-bottom: 2px solid #d1cfcf;
+}
+.nav-underline:hover {
+  border-color: #626cc1;
+}
+.nav-underline.active,
+.nav-underline:active,
+.nav-underline:focus {
+  border-color: #3c5ccf;
+}
+.stage {
+  position: relative;
+}
+.nav-toggle {
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  z-index: 1;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 3px rgba(0,0,0,0.2);
+}
+.nav-toggle > div {
+  font-size: 2rem;
+}
+.nav-toggle:focus {
+  background: #d6d6d6;
+}
+.validation-error {
+  width: 100%;
+  border-bottom: 2px solid #000;
+  transition: border-color 0.2s ease;
+  border-bottom: 2px solid #fe9494;
+  padding: 0.5rem 0.1rem 0.2rem 0.5rem;
+}
+.validation-error:hover {
+  border-color: #e34040;
+}
+.validation-error.active,
+.validation-error:active,
+.validation-error:focus {
+  border-color: #e34040;
+}
+.validation-error-exclaim {
+  width: 1rem;
+  height: 1rem;
+  background: #e34040;
+  color: #fff;
+  border-radius: 50%;
+}
+.validation-error-exclaim div {
+  font-weight: 600;
+  font-size: 0.9rem;
 }
