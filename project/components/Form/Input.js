@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {observer} from 'mobx-react'
+import ValidationErrors from './ValidationErrors'
 
 @observer
 export default class FormInput extends Component {
@@ -45,11 +46,15 @@ export default class FormInput extends Component {
     }
     if (hidden) {return null}
 
+    var $errmsg = <ValidationErrors store={store} id={id}/>
+
+    if (store)
     // TODO element for error handling.
     return (<div className='f-input' id={'f-'+id}>
       {$label}
       {$input}
       {$cross}
+      {$errmsg}
     </div>)
   }
 

@@ -9,14 +9,12 @@ export default class FormSections extends Component {
   }
   handleSubmit(e) {
     e.preventDefault()
-    store.reqNewForm()
+    store.formSubmit()
   }
   render() {
     var {store, form} = this.props
     var btntxt = store.newform_submit_txt
-    console.log(btntxt)
     var sections = form.map((o)=>{
-      // o.section_id
       return <Section store={store} form={o} key={o.heading}/>
     })
     return (<form className='f-sections'>

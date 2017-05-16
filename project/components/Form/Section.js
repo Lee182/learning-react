@@ -16,7 +16,6 @@ export default class Section extends Component {
   handleBtnCross(e) {
     var {store, form} = this.props
     e.preventDefault()
-    console.log(store, form)
     store.removeSectionArr(form.section_id, form.heading_remove)
   }
 
@@ -30,7 +29,7 @@ export default class Section extends Component {
     var arr = []
     if (!form.array || form.array_parsed) {
       arr = form.inputs.map((o,i)=>{
-        var k = (form.id || form.section_id)+'_'+i
+        var k = (form.id || form.section_id2 || form.section_id)+'_'+i
         return <Builder store={store} form={o} key={k} depth={depth1} />
       })
     }

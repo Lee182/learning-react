@@ -15,10 +15,11 @@ export default class App extends Component {
       nav_open: !this.state.nav_open
     })
   }
-  hideNav() {
+  hideNav(e) {
     this.setState({
       nav_open: false
     })
+    e.preventDefault()
   }
 
   render() {
@@ -30,9 +31,6 @@ export default class App extends Component {
       stageclass += ' nav-open'
     }
     return (<div>
-      <div className='nav-toggle flex-center' onClick={this.toggleNav.bind(this)}>
-        <div>☰</div>
-      </div>
       <nav className={navclass}>
         <a className='nav-item nav-title'>Service Title</a>
         <br/>
@@ -46,7 +44,7 @@ export default class App extends Component {
           <span className='nav-underline'>Service 3</span>
         </a>
         <a className='nav-item'>
-          <span className='nav-underline'>Personal Details Form</span>
+          <span className='nav-underline active'>Personal Details Form</span>
         </a>
         <a className='nav-item'>
           <span className='nav-underline'>Personal Detials Table</span>
@@ -58,6 +56,9 @@ export default class App extends Component {
         </a>
       </nav>
       <div className={stageclass}>
+        <button className='nav-toggle flex-center' onClick={this.toggleNav.bind(this)}>
+          <div>☰</div>
+        </button>
         <TheForm store={FormStore} form={FormStore.form}/>
       </div>
     </div>)

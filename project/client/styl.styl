@@ -64,13 +64,28 @@ h1
   align-items center
 
 
-inputborder()
-  border-bottom 2px solid #d1cfcf
+borderc(c1, c2, c3, bool)
+  transition border-color .2s ease
+  if bool
+    border-bottom 2px solid c1
   &:hover
-    border-color #626cc1
+    border-color c2
+  &.active
   &:active
   &:focus
-    border-color #171138
+    border-color c3
+
+btn(c1 = transparent, c2, n = .95)
+  transition all .25s ease
+  background-color c1
+  &:hover
+  &:focus
+    background-color c2
+  &:active
+    transform scale(n)
+  border-radius .5rem
+
+
 .f-input
   padding .5rem
   display flex
@@ -82,14 +97,14 @@ inputborder()
 
 input.input
   flex-grow 1
-  inputborder()
+  borderc(#d1cfcf, #626cc1, #171138, true)
   padding .3rem .5rem
   margin 0 .5rem
 
 textarea.input
   border 2px solid #d1cfcf
   border-radius .2rem
-  inputborder()
+  borderc(#d1cfcf, #626cc1, #171138, true)
   max-width 100%
   width 100%
   flex-basis 100%
@@ -97,29 +112,18 @@ textarea.input
   margin .5rem 0
 
 .btn-append
-  border 2px solid $c_blue
   padding .5rem
   margin .5rem
-  border-radius .5rem
+  btn(white, #beccff)
+  border 2px solid $c_blue
   color $c_blue
-  transition all .25s ease
-  &:hover
-    background-color #beccff
-  &:active
-    transform scale(.95)
+
 
 .btn-submit
-  background-color $c_blue
   padding 1rem
   margin 1rem
-  border-radius .5rem
   color white
-  transition all .25s ease
-  &:hover
-    background-color #5a75d6
-  &:active
-    transform scale(.95)
-
+  btn($c_blue, #5a75d6)
 
 .btn-x
   background #e34040
@@ -128,6 +132,7 @@ textarea.input
   width 2rem
   margin 0 .5rem
   &:hover
+  &:focus
     background #ff6969
   &:active
     transform scale(.95)
@@ -163,6 +168,7 @@ textarea.input
   position fixed
   top 0
   left 0
+  z-index 1
   display flex
   height 100vh
   max-width 300px
@@ -190,13 +196,14 @@ textarea.input
     color black
 
 .nav-underline
-  inputborder()
+  borderc(#d1cfcf, #626cc1, $c_blue, true)
 
+.stage
+  position relative
 .nav-toggle
   position fixed
   top .5rem
   right .5rem
-  padding 1rem
   width 3rem
   height 3rem
   border-radius 50%
@@ -204,6 +211,24 @@ textarea.input
   & > div
     font-size 2rem
   background white
+  &:focus
+    background rgb(214, 214, 214)
   shadow()
   // @media screen and (min-width: 600px)
   //   display none
+
+
+.validation-error
+  width 100%
+  border-bottom 2px solid black
+  borderc(#fe9494, #e34040, #e34040, true)
+  padding .5rem .1rem .2rem .5rem
+  &-exclaim
+    width: 1rem;
+    height: 1rem;
+    background: #e34040;
+    color: white;
+    border-radius: 50%;
+    div
+      font-weight 600
+      font-size .9rem

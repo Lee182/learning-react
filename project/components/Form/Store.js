@@ -2,6 +2,8 @@ import { computed, observable, autorun } from 'mobx'
 import form from '../../shared/form.json'
 import cp from '../../shared/copyObject.js'
 import request from '../../client/lib/request.js'
+import validation from '../../shared/validation/index.js'
+window.validation = validation
 
 export class FormStore {
   @observable raw = form
@@ -15,18 +17,11 @@ export class FormStore {
   // form_ids is build from the form object
   // react binds inputs to the id key
   @observable ids = {}
+  @observable ids_errors = {}
 
   @observable ids_arr = cp(form.ids_arr)
   @observable sections_arr = cp(form.sections_arr)
-  // form_errors computed from form_ids will
-  // run indivual change validation
-  // react shows error messages from form_errors
-  @computed get form_errors() {
-    this.form_ids
-    // watches form_ids and performs individual type validations
-    return 2
-    // return {'name': []}
-  }
+
   @observable newform_submit_txt = 'Submit'
   constructor() {
     this.setIdsDefault()
@@ -55,6 +50,9 @@ export class FormStore {
     self._setIdsArr(self.ids_arr, self.addIdArr)
     self._setIdsArr(self.sections_arr, self.addSectionArr)
     self._default = cp(self.ids)
+    Object.keys(self.ids).forEach((name)=>{
+      self.ids_errors[name] = {errors: []}
+    })
   }
   _setIdsArr(ids, fn) {
     var self = this
@@ -79,6 +77,7 @@ export class FormStore {
     var a = this.ids_arr[id_abstract].array
 
     var id = id_abstract.split('$').join(a.count)
+    this.ids_errors[id] = {errors: []}
     this.ids[id] = ''
 
     this.ids_arr[id_abstract].array.count++
@@ -95,6 +94,7 @@ export class FormStore {
       id0 = a.join(i++)
       id1 = a.join(j++)
     }
+    delete this.ids_errors[a.join(j)]
     delete this.ids[a.join(j)]
     if (this.ids_arr[id_abstract])
     this.ids_arr[id_abstract].array.count--
@@ -115,6 +115,7 @@ export class FormStore {
     var a = section.array
     Object.keys(section.ids).forEach((id)=>{
       id = id.split('$').join(a.count)
+      self.ids_errors[id] = {errors: []}
       self.ids[id] = ''
     })
     this.sections_arr[section_id].array.count++
@@ -130,7 +131,12 @@ export class FormStore {
   }
 
   validateForm(){
-    // send the form to server for validation
+    // validation that nothing blank, with exception of optional
+    // validaion of simpled varibles
+  }
+  formSubmit() {
+    console.log("here formSubmit")
+    this.ids_errors.name.errors[0] = 'shit'
   }
   reqNewForm() {
     var self = this
