@@ -161,8 +161,10 @@ textarea {
   background: none;
   font: unset;
 }
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600");
 body {
   background-color: #eee;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .flex-center {
   display: flex;

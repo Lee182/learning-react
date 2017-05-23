@@ -17,6 +17,8 @@ app.post('/new_form', function(req,res){
   console.log(o)
   db.methods.put_form({form: o}).then(function(res){
     res.json({ok: true, _id: res._id, res})
+  }).catch(function(err){
+    res.json({ok: false, err})
   })
 })
 app.listen(port, function(error) {
